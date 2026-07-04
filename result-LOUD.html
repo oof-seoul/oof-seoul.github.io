@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>큰소리 리액터 · 필드밖 토크 살롱</title>
+<meta property="og:title" content="나는 '큰소리 리액터'! 너는?">
+<meta property="og:description" content="골이 들어가면, 온 라운지가 압니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://off-field-salon.netlify.app/result-LOUD.html">
+<meta property="og:image" content="https://off-field-salon.netlify.app/og-LOUD.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://off-field-salon.netlify.app/og-LOUD.png">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{ --lime:#DDFF00; --card:#171B22; --line2:#2A2F38; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:#0E1216; color:#fff;
+    font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+    letter-spacing:-.01em; -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word;
+    min-height:100dvh; display:flex; align-items:center; justify-content:center;
+    padding:20px; padding-top:max(20px, env(safe-area-inset-top)); padding-bottom:max(20px, env(safe-area-inset-bottom));}
+  .wrap{width:100%; max-width:440px;}
+
+  .card{background:var(--card); border:2px solid var(--lime); border-radius:22px; padding:26px 22px;}
+  .top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .logo{font-size:19px; font-weight:800; letter-spacing:.02em;}
+  .logo b{color:var(--lime);}
+  .badge{flex-shrink:0; font-size:12px; font-weight:700; color:#111419; background:var(--lime); padding:6px 12px; border-radius:999px;}
+  .divider{height:1px; background:var(--line2); margin:20px 0;}
+  .flabel{font-family:"Pretendard Variable",monospace; font-size:13px; font-weight:700; letter-spacing:.18em; color:var(--lime);}
+  .name{font-size:clamp(34px, 11vw, 46px); font-weight:800; letter-spacing:-.02em; color:var(--lime); line-height:1.15; margin:10px 0 14px;}
+  .catch{font-size:clamp(16px, 4.6vw, 19px); color:#E7E7E7; line-height:1.55;}
+  .hook{font-size:clamp(18px, 5vw, 21px); font-weight:800; color:#fff; margin-bottom:6px;}
+  .brand{font-size:14px; color:#9AA0A8;}
+
+  .cta{display:block; width:100%; margin-top:16px; padding:17px; text-align:center;
+    font-size:16px; font-weight:800; color:#111419; background:var(--lime);
+    border:none; border-radius:14px; text-decoration:none; cursor:pointer;}
+  .cta:active{transform:scale(.99);}
+  .sub{display:block; text-align:center; margin-top:16px; font-size:14px; color:#9AA0A8; text-decoration:underline; text-underline-offset:3px;}
+  .foot{text-align:center; margin-top:18px; font-size:12px; color:#5F6670;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <span class="logo">OOF<b>.SEOUL</b></span>
+        <span class="badge">관전 유형 테스트</span>
+      </div>
+      <div class="divider"></div>
+      <div class="flabel">FAN TYPE</div>
+      <div class="name" id="name">—</div>
+      <div class="catch" id="catch">—</div>
+      <div class="divider"></div>
+      <div class="hook">너는 어떤 관전 유형일까?</div>
+      <div class="brand">필드밖 토크 살롱 · 을지로</div>
+      <a class="cta" href="index.html#test">테스트하러 가기 →</a>
+    </div>
+    <a class="sub" href="index.html">필드밖 토크 살롱이 뭐야?</a>
+    <div class="foot">필드밖 토크 살롱 · 을지로 · @out_of_field_</div>
+  </div>
+
+<script>
+const TYPES = {
+  LOUD:{name:"큰소리 리액터",c:"골이 들어가면, 온 라운지가 압니다."},
+  ECHO:{name:"따라 웃는 리액터",c:"혼자선 애매, 같이 보면 폭발하는 증폭기."},
+  HOLD:{name:"숨참기형",c:"결정적 순간, 나는 숨을 멈춘다."},
+  GRAB:{name:"머리 쥐어뜯기형",c:"온몸으로 경기를 앓는 사람."},
+  ANALYST:{name:"냉철한 분석러",c:"심장은 뜨겁게, 머리는 차갑게."},
+  HIFIVE:{name:"하이파이브 요정",c:"골보다 먼저, 옆 사람과 얼싸안는다."},
+  LOYAL:{name:"끝까지 남는 충성러",c:"스코어가 뭐든, 나는 끝까지 남는다."},
+  SNACK:{name:"긴장 먹방형",c:"긴장될수록 손이 바빠지는 타입."}
+};
+const code = "LOUD";
+const info = code && TYPES[code];
+if(info){
+  document.getElementById('name').textContent = info.name;
+  document.getElementById('catch').textContent = '“'+info.c+'”';
+}else{
+  document.getElementById('name').textContent = '축구 볼 때 나는?';
+  document.getElementById('catch').textContent = '8가지 관전 유형 중 내 모습을 찾아보세요.';
+}
+</script>
+</body>
+</html>

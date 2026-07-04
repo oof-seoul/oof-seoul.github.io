@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>필드밖 토크 살롱 · OOF 을지로</title>
+<!-- 신청/공유 링크 교체: 아래 <script>의 APPLY_URL, SHARE_URL 값만 바꾸세요 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E12; --surface:#14181F; --surface2:#1A1F27; --line:#262B33; --line2:#333A44;
+    --lime:#DDFF00; --ink:#FFFFFF; --muted:#AEB4BC; --dim:#6B7480; --r:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink);
+    font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+    word-break:keep-all; overflow-wrap:break-word;}
+  .wrap{max-width:720px; margin:0 auto; padding:0 22px;}
+  section{padding:60px 0;}
+  .eyebrow{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.1em; color:#0B0E12; background:var(--lime); padding:4px 9px; border-radius:5px; text-transform:uppercase; margin-bottom:16px;}
+  h2{font-family:'Black Han Sans',sans-serif; font-weight:400; font-size:clamp(26px,7.5vw,38px); line-height:1.14; color:#fff; letter-spacing:-.01em;}
+  h3{font-size:17px; font-weight:700; color:#fff;}
+  p{color:#fff;}
+  .muted{color:var(--muted);}
+  .btn{display:inline-block; font-family:inherit; font-size:15px; font-weight:700; padding:14px 26px; border-radius:12px; cursor:pointer; border:1px solid transparent; text-decoration:none; transition:.15s; letter-spacing:-.01em;}
+  .btn-gold,.btn-dark{background:var(--lime); color:#0B0E12;}
+  .btn-gold:hover,.btn-dark:hover{filter:brightness(1.06);}
+  .btn-line{background:transparent; color:#fff; border-color:var(--line2);}
+  .btn-line:hover{border-color:#fff;}
+
+  /* nav */
+  nav{position:sticky; top:0; z-index:40; background:rgba(11,14,18,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:58px;}
+  .logo{font-size:19px; font-weight:800; letter-spacing:.02em; color:#fff;}
+  .logo b{background:var(--lime); color:#0B0E12; padding:0 5px; border-radius:4px; margin-left:1px; font-weight:800;}
+  nav .btn{padding:9px 18px; font-size:14px;}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; padding:52px 0 44px;}
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-halo{position:absolute; top:-18px; right:-34px; z-index:1; opacity:.9; pointer-events:none;}
+  .hero-sticker{position:absolute; top:60px; right:20px; z-index:3; width:66px; height:66px; border-radius:50%; background:var(--lime); color:#0B0E12; border:3px solid var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-12deg); font-family:'Black Han Sans',sans-serif; font-size:19px; line-height:1; text-align:center;}
+  .hero-sticker span{display:block; font-size:12px; margin-top:2px;}
+  .hero .brand{font-size:14px; font-weight:800; letter-spacing:.12em; color:#fff; margin-bottom:18px;}
+  .hero .brand span{color:var(--lime);}
+  .hero .tag{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.08em; color:#0B0E12; background:var(--lime); padding:5px 10px; border-radius:6px; margin-bottom:20px;}
+  .hero h1{font-family:'Black Han Sans',sans-serif; font-weight:400; font-size:clamp(44px,13vw,64px); line-height:.98; letter-spacing:-1px; color:#fff;}
+  .hero h1 .u{color:var(--lime);}
+  .hero p{color:var(--muted); font-size:16px; margin:20px 0 28px; max-width:440px;}
+  .hero .btn{padding:15px 32px; font-size:16px;}
+  .hero .sub{margin-top:16px; font-size:12.5px; color:var(--dim);}
+
+  /* marquee */
+  .marquee{background:var(--lime); overflow:hidden; white-space:nowrap;}
+  .marquee-track{display:inline-block; white-space:nowrap; color:#0B0E12; font-weight:800; font-size:13px; letter-spacing:.02em; padding:9px 0; animation:mq 24s linear infinite;}
+  @keyframes mq{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+  /* empathy */
+  .empathy{background:var(--surface); text-align:center; padding:52px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .empathy p{font-size:19px; font-weight:600; line-height:1.55; color:#fff;}
+  .empathy .s{display:block; font-size:14.5px; font-weight:400; color:var(--muted); margin-top:12px;}
+
+  /* chips */
+  .chips{display:flex; gap:9px; flex-wrap:wrap; margin-top:20px;}
+  .chip{font-size:14px; font-weight:600; padding:9px 15px; border-radius:999px; background:var(--surface); border:1px solid var(--line2); color:#fff;}
+  .chip .d{color:var(--muted); font-weight:400; margin-left:6px; font-size:13px;}
+
+  /* grids */
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px;}
+  .vcard{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:20px;}
+  .vcard .k{font-size:12.5px; color:var(--lime); font-weight:700; margin-bottom:8px; letter-spacing:.02em;}
+  .vcard .t{font-size:16px; font-weight:700; margin-bottom:6px; color:#fff;}
+  .vcard .d{font-size:13.5px; color:var(--muted); line-height:1.6;}
+
+  /* steps */
+  .steps{margin-top:22px; display:flex; flex-direction:column; gap:10px;}
+  .step{display:flex; gap:16px; align-items:flex-start; padding:20px; border:1px solid var(--line); border-radius:var(--r); background:var(--surface);}
+  .step .n{font-family:'Black Han Sans',sans-serif; font-size:16px; color:#0B0E12; background:var(--lime); min-width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center;}
+  .step h3{margin-bottom:5px;}
+  .step p{font-size:14px; color:var(--muted);}
+  .step .out{display:inline-block; margin-top:9px; font-size:12.5px; color:#0B0E12; background:var(--lime); border-radius:8px; padding:4px 10px; font-weight:700;}
+
+  /* space */
+  .space{background:var(--surface); border:1.5px solid var(--lime); border-radius:18px;}
+  .space .inner{padding:36px 30px;}
+  .space .eyebrow{color:#0B0E12;}
+  .space h2{color:#fff;}
+  .space p{color:var(--muted); font-size:15px; margin-top:12px;}
+  .space ul{list-style:none; margin-top:18px; display:flex; gap:9px; flex-wrap:wrap;}
+  .space li{font-size:13px; color:#fff; border:1px solid var(--line2); border-radius:999px; padding:7px 13px;}
+
+  /* host */
+  .host{display:flex; gap:18px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:24px; margin-top:20px;}
+  .host-pic{width:74px; height:74px; border-radius:50%; background:var(--bg); color:var(--lime); font-family:'Black Han Sans',sans-serif; font-size:30px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1.5px solid var(--lime);}
+  .host-name{font-size:18px; font-weight:800; color:#fff;}
+  .host-name span{font-size:13px; font-weight:500; color:var(--muted); margin-left:6px;}
+  .host-tag{font-size:14px; color:#fff; margin-top:6px; font-weight:600;}
+  .host-bio{font-size:14px; color:var(--muted); margin-top:10px; line-height:1.75;}
+  .host-chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
+  .host-chips span{font-size:12.5px; font-weight:600; background:var(--surface2); border:1px solid var(--line2); color:#fff; border-radius:999px; padding:6px 12px;}
+  @media(max-width:560px){ .host{flex-direction:column; gap:16px;} }
+
+  /* quiz */
+  .q{border:1px solid var(--line); border-radius:var(--r); padding:20px; margin-bottom:11px; background:var(--surface);}
+  .q .qh{font-weight:700; font-size:15.5px; margin-bottom:13px; color:#fff;}
+  .q .qh .qn{color:var(--lime); margin-right:7px;}
+  label.opt{display:flex; gap:11px; align-items:flex-start; padding:11px 13px; border:1px solid var(--line2); border-radius:10px; margin-bottom:8px; cursor:pointer; font-size:14.5px; color:#fff; transition:.12s;}
+  label.opt:hover{border-color:#5A6472;}
+  label.opt.sel{border-color:var(--lime); background:rgba(221,255,0,.10);}
+  label.opt input{accent-color:var(--lime); margin-top:3px;}
+  .runbtn{width:100%; margin-top:6px; padding:16px; font-size:16px;}
+  .progress{position:sticky; bottom:14px; background:rgba(20,24,31,.92); backdrop-filter:blur(8px); border:1px solid var(--line2); border-radius:12px; padding:11px 15px; margin-top:16px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:12px;}
+  .bar{flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden;}
+  .bar i{display:block; height:100%; width:0; background:var(--lime); transition:.3s;}
+  #result{display:none; margin-top:10px;}
+  .rescard{background:var(--bg); border:1.5px solid var(--lime); border-radius:18px; padding:34px 24px; text-align:center;}
+  .rescard .rk{font-size:12px; letter-spacing:.14em; color:var(--dim); font-weight:600; text-transform:uppercase;}
+  .rescard .rt{font-family:'Black Han Sans',sans-serif; font-size:34px; color:var(--lime); margin:12px 0 8px; letter-spacing:-.01em;}
+  .rescard .rc{font-size:16px; color:#E7E7E7; max-width:400px; margin:0 auto;}
+  .rescard .rsub{font-size:13px; color:var(--dim); margin-top:14px;}
+  .rescard .rsub b{color:var(--lime);}
+  .rescard .acts{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:24px;}
+
+  /* price ticket */
+  .price{position:relative; background:var(--surface); border:1.5px solid var(--lime); border-radius:18px; padding:34px 30px; text-align:center; overflow:hidden;}
+  .price:before,.price:after{content:""; position:absolute; width:26px; height:26px; border-radius:50%; background:var(--bg); border:1.5px solid var(--lime); top:50%; transform:translateY(-50%);}
+  .price:before{left:-14px;} .price:after{right:-14px;}
+  .price .early{font-size:13px; font-weight:700; color:#0B0E12; background:var(--lime); display:inline-block; padding:5px 13px; border-radius:999px; margin-bottom:16px;}
+  .price .old{font-size:15px; color:var(--muted); text-decoration:line-through;}
+  .price .now{font-family:'Black Han Sans',sans-serif; font-size:52px; color:#fff; line-height:1.05;}
+  .price .per{font-size:13.5px; color:var(--muted); margin-top:6px;}
+  .price ul{list-style:none; text-align:left; max-width:360px; margin:22px auto 0;}
+  .price li{font-size:14px; padding:10px 0 10px 26px; position:relative; border-top:1px solid var(--line2); color:#fff;}
+  .price li:before{content:"✓"; position:absolute; left:2px; color:var(--lime); font-weight:700;}
+  .price .btn{margin-top:24px; padding:15px 36px; font-size:16px;}
+  .policy{font-size:12.5px; color:var(--muted); margin-top:16px; line-height:1.7;}
+
+  /* apply steps */
+  .astep{display:flex; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line);}
+  .astep:last-child{border-bottom:none;}
+  .astep .n{font-size:13px; font-weight:800; color:var(--lime);}
+  .astep .t{font-size:15px; font-weight:700; color:#fff;}
+  .astep .d{font-size:13.5px; color:var(--muted);}
+
+  details{border-bottom:1px solid var(--line); padding:18px 2px;}
+  details summary{cursor:pointer; font-weight:600; font-size:15.5px; color:#fff; list-style:none; display:flex; justify-content:space-between; align-items:center;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary:after{content:"+"; color:var(--lime); font-size:22px; font-weight:400;}
+  details[open] summary:after{content:"−";}
+  details p{color:var(--muted); font-size:14.5px; margin-top:12px;}
+
+  .finalcta{text-align:center; background:var(--surface); border-top:1px solid var(--line);}
+  .finalcta h2{color:#fff; font-size:clamp(32px,9vw,46px);}
+  .finalcta .btn{margin-top:22px; padding:16px 38px; font-size:16px;}
+
+  footer{padding:40px 0; text-align:center; border-top:1px solid var(--line);}
+  footer .logo{font-size:22px;}
+  footer p{font-size:13px; color:var(--muted); margin-top:10px;}
+
+  #toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(30px); background:var(--lime); color:#0B0E12; font-size:14px; font-weight:700; padding:13px 22px; border-radius:12px; opacity:0; pointer-events:none; transition:.3s; z-index:100;}
+  #toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:560px){ .grid{grid-template-columns:1fr;} .grid3{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">OOF<b>.SEOUL</b></span>
+    <a class="btn btn-gold apply">신청하기</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="hero-halo" width="220" height="200" viewBox="0 0 220 200" aria-hidden="true">
+    <circle cx="150" cy="66" r="86" fill="none" stroke="#DDFF00" stroke-width="2"/>
+    <circle cx="150" cy="66" r="56" fill="none" stroke="#DDFF00" stroke-width="1.4" opacity=".5"/>
+    <circle cx="150" cy="66" r="7" fill="#DDFF00"/>
+    <circle cx="60" cy="150" r="6" fill="#DDFF00"/>
+    <circle cx="86" cy="176" r="4" fill="#DDFF00" opacity=".8"/>
+    <circle cx="40" cy="180" r="3" fill="#DDFF00" opacity=".55"/>
+  </svg>
+  <div class="hero-sticker">8석<span>한정</span></div>
+  <div class="wrap">
+    <div class="brand">OOF<span>.SEOUL</span></div>
+    <span class="tag">WORLD CUP 2026 · 을지로</span>
+    <h1>축구는<br>같이 볼 때<br><span class="u">완성된다.</span></h1>
+    <p>잘 몰라도 괜찮아요. 뉴비부터 10년 이상 코어팬까지,<br>일주일에 한 번, 딱 세 번 만나요.</p>
+    <a class="btn btn-gold apply">기수 신청하기</a>
+    <div class="sub">평일 수요일 저녁 8시 · 주말 토요일 오후 2시 · 90분 · 소수정예 8~12명</div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track">필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · 필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · </div></div>
+
+<div class="empathy">
+  <div class="wrap">
+    <p>“축구 깊게 얘기할 사람이, 왜 이렇게 없을까.”
+      <span class="s">회사에도 일상에도 이만큼 좋아하는 사람이 없어서. 그래서 만들었어요.</span></p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Why join</div>
+    <h2>왜 좋냐면.</h2>
+    <div class="grid3">
+      <div class="vcard"><div class="k">연결</div><div class="t">축구로 만나는 새 친구들</div><div class="d">뉴비부터 10년 이상 코어팬까지, 혼자선 만날 일 없던 다양한 축구팬과 이어져요.</div></div>
+      <div class="vcard"><div class="k">공감</div><div class="t">눈치 없이, 편하게</div><div class="d">말이 통하는 사람들끼리. 무시도 설명충도 없이 마음껏 축구 얘기.</div></div>
+      <div class="vcard"><div class="k">몰입</div><div class="t">두 배로 재밌어진다</div><div class="d">같이 보고 떠들면 몰입감이 달라요. 혼자 보던 경기가 이벤트가 됩니다.</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">Who comes</div>
+    <h2>이런 사람들이 옵니다.</h2>
+    <p class="muted" style="margin-top:14px; font-size:15.5px;">지식의 깊이는 입장권이 아니에요. ‘입덕 시기’가 달라도 한 테이블에서 대등하게 떠듭니다.</p>
+    <div class="chips">
+      <span class="chip">이번 월드컵부터 <span class="d">뉴비 환영</span></span>
+      <span class="chip">국대·빅매치만 <span class="d">라이트팬</span></span>
+      <span class="chip">3년차 꾸준팬</span>
+      <span class="chip">10년+ 코어팬</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">What you'd miss</div>
+    <h2>혼자 보면, 놓치는 것들.</h2>
+    <div class="grid">
+      <div class="vcard"><div class="k">01</div><div class="t">축구 친구 8~11명</div><div class="d">혼자 보던 경기를 같이 볼 사람들. 이게 진짜 상품이에요.</div></div>
+      <div class="vcard"><div class="k">02</div><div class="t">큐레이션된 3번의 밤</div><div class="d">혼자선 못 만드는 몰입. 정답 없는 축구 수다 90분.</div></div>
+      <div class="vcard"><div class="k">03</div><div class="t">손에 남는 기록</div><div class="d">기수 베스트 11 · 시즌 예측 봉인 · 함께 짠 관전 캘린더.</div></div>
+      <div class="vcard"><div class="k">04</div><div class="t">소속, 그리고 OB</div><div class="d">세 번으로 끝나지 않아요. 이후에도 이어지는 우리 기수.</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">Curriculum</div>
+    <h2>지금 아니면, 못 할 이야기.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <div><h3>월드컵, 그 순간</h3>
+          <p>이번 월드컵, 실컷 떠들며 시작해요.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div><h3>나만의 베스트 11</h3>
+          <p>각자의 픽을 모아 우리만의 이야기로.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div><h3>다음 시즌 미리보기</h3>
+          <p>월드컵 다음, 시즌 이야기까지.</p></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:16px; font-size:13.5px;">자세한 진행은 와서 직접 — 매주 작은 준비물 하나로 함께 만들어가는 재미가 있어요.</p>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="space"><div class="inner">
+      <div class="eyebrow">The place</div>
+      <h2>을지로 골목 어딘가,<br>축구 아지트.</h2>
+      <p>퇴근하고 맥주 한 캔 들고 편하게. 매 회 간단한 스낵과 음료(맥주 또는 무알콜·음료) 한 캔이 함께합니다. 마시러 오는 곳이 아니라, 편하게 떠들러 오는 곳.</p>
+      <ul><li>을지로 · 우프라운지</li><li>간식 + 음료 1캔 제공</li><li>혼자 와도 되는 분위기</li></ul>
+    </div></div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">Host</div>
+    <h2>축구를 더욱 더 즐길 수 있는 자리,<br>흔치 않아요.</h2>
+    <p class="muted" style="margin-top:12px; font-size:15px;">당신을 위해 맛있게 끓여드립니다.</p>
+    <div class="host">
+      <div class="host-pic">밖</div>
+      <div class="host-body">
+        <div class="host-name">밖필드 <span>@bak_field</span></div>
+        <p class="host-tag">축구·야구 스포츠 팬덤을 위한 프라이빗 라운지, 우프라운지(OOF) 을지로</p>
+        <p class="host-bio">약 2년 반째 축구 팬덤 커뮤니티를 운영하고, 1년 반 동안 축구팬을 위한 오프라인 행사를 기획·진행해 왔어요. 올해 초 을지로에 우프라운지를 열었습니다. 모두가 함께, 각자의 감도에 맞춰 더 몰입감 있고 뜨겁게 스포츠를 즐기는 라이프스타일을 만들고 싶어요.</p>
+        <div class="host-chips"><span>축구 팬덤 커뮤니티 2년 반 운영</span><span>올해 초 우프라운지 을지로 오픈</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;" id="test">
+  <div class="wrap">
+    <div class="eyebrow">Fan type test</div>
+    <h2>축구 볼 때 나는?</h2>
+    <p class="muted" style="margin:12px 0 24px; font-size:15px;">1분이면 나와요. 8가지 관전 유형 중 내 모습은? 결과는 친구에게 공유할 수 있어요.</p>
+    <div id="questions"></div>
+    <button class="btn btn-dark runbtn" id="run">결과 보기</button>
+    <div class="progress"><span id="pcount">0 / 10</span><div class="bar"><i id="pbar"></i></div></div>
+    <div id="result">
+      <div class="rescard">
+        <div class="rk">Your fan type</div>
+        <div class="rt" id="rt">—</div>
+        <div class="rc" id="rc">—</div>
+        <div class="rsub" id="rsub"></div>
+        <div class="acts">
+          <button class="btn btn-gold" id="share">결과 공유하기</button>
+          <a class="btn btn-line apply">기수 신청하기</a>
+          <button class="btn btn-line" id="retry">다시 하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h2>1기 참가비.</h2>
+    <div class="price" style="margin-top:22px;">
+      <span class="early">얼리버드 · 마감 전 한정</span>
+      <div class="old">정가 109,000원</div>
+      <div class="now">89,000<span style="font-size:22px;">원</span></div>
+      <div class="per">3회 패키지 · 1인 기준</div>
+      <ul>
+        <li>살롱 참여 (일주일에 한 번, 총 3회)</li>
+        <li>매 회 간식 + 음료(맥주/무알콜) 1캔</li>
+        <li>기수 베스트 11 · 시즌 예측 봉인 · 관전 캘린더</li>
+        <li>기수 단톡 & OB 커뮤니티 · 개막전 재소집</li>
+      </ul>
+      <a class="btn btn-dark apply">지금 신청하기</a>
+      <p class="policy">소수정예 8~12명 · 전액 선결제 · 간단 신청서 확인 후 확정<br>노쇼·임박 취소 시 환불 불가 · 3회 개근 시 리워드 제공</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">How to join</div>
+    <h2>신청 방법.</h2>
+    <div style="margin-top:18px;">
+      <div class="astep"><span class="n">STEP 1</span><div><div class="t">간단 신청서</div><div class="d">3문항만. 왜 지원했는지, 응원팀·입덕 시기, 기대하는 것.</div></div></div>
+      <div class="astep"><span class="n">STEP 2</span><div><div class="t">선결제로 자리 확정</div><div class="d">소수정예라 선결제 순으로 마감돼요.</div></div></div>
+      <div class="astep"><span class="n">STEP 3</span><div><div class="t">입장 — 우리 기수 시작</div><div class="d">웰컴 안내 + 사전 미션. 시작 전부터 이미 멤버.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2 style="margin-bottom:14px;">자주 묻는 질문.</h2>
+    <details><summary>축구를 잘 몰라도 되나요?</summary><p>네. 지식이 아니라 취향·경험을 나누는 자리예요. “바보 같은 질문 환영”이 규칙이고, 설명충·핀잔은 금지입니다.</p></details>
+    <details><summary>혼자 신청해도 괜찮을까요?</summary><p>대부분 혼자 오세요. 입덕 시기가 다른 사람끼리 짝을 매칭해 자연스럽게 친해지도록 진행합니다.</p></details>
+    <details><summary>술을 못 마셔도 되나요?</summary><p>물론이에요. 음료는 맥주 또는 무알콜·음료 중 선택. 마시러 오는 곳이 아니라 편하게 떠들러 오는 곳입니다.</p></details>
+    <details><summary>89,000원이 아깝지 않을까요?</summary><p>세 번의 몰입 경험, 손에 남는 기록, 그리고 시즌 내내 같이 볼 친구들까지. 술자리 두 번 값으로 얻는 것치고는 남는 장사예요.</p></details>
+    <details><summary>평일과 주말 기수 차이는요?</summary><p>내용은 같아요. 평일 기수는 매주 수요일 저녁 8시(퇴근 후 아지트 무드), 주말 기수는 매주 토요일 오후 2시(낮부터 여유로운 무드)입니다. 라이프스타일에 맞게 고르세요.</p></details>
+  </div>
+</section>
+
+<section class="finalcta">
+  <div class="wrap">
+    <h2>이번 월드컵,<br>혼자 보지 마세요.</h2>
+    <a class="btn btn-gold apply">기수 신청하기</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">OOF<b>.SEOUL</b></div>
+    <p>필드밖 토크 살롱 · 을지로 · @out_of_field_</p>
+  </div>
+</footer>
+
+<div id="toast">신청 오픈 예정입니다 · 링크 연결 준비 중</div>
+
+<script>
+const APPLY_URL = "https://off-field-salon.netlify.app/apply.html";   // 신청 폼으로 연결 (같은 폴더 기준)
+const SHARE_URL = "";   // 배포된 페이지 주소 (비우면 현재 주소로 공유)
+
+const TYPES = {
+  LOUD:{name:"큰소리 리액터",c:"골이 들어가면, 온 라운지가 압니다."},
+  ECHO:{name:"따라 웃는 리액터",c:"혼자선 애매, 같이 보면 폭발하는 증폭기."},
+  HOLD:{name:"숨참기형",c:"결정적 순간, 나는 숨을 멈춘다."},
+  GRAB:{name:"머리 쥐어뜯기형",c:"온몸으로 경기를 앓는 사람."},
+  ANALYST:{name:"냉철한 분석러",c:"심장은 뜨겁게, 머리는 차갑게."},
+  HIFIVE:{name:"하이파이브 요정",c:"골보다 먼저, 옆 사람과 얼싸안는다."},
+  LOYAL:{name:"끝까지 남는 충성러",c:"스코어가 뭐든, 나는 끝까지 남는다."},
+  SNACK:{name:"긴장 먹방형",c:"긴장될수록 손이 바빠지는 타입."}
+};
+const QS=[
+ {q:"우리 팀 선제골! 첫 반응은?",o:[["벌떡 일어나 온 라운지가 떠나가라 소리친다",{LOUD:2}],["옆 사람이랑 하이파이브·얼싸안기부터",{HIFIVE:2}],["\"오 좋아\" 조용히 주먹을 꽉 쥔다",{HOLD:1,LOYAL:1}],["\"이 골, 빌드업이 좋았지\" 복기한다",{ANALYST:2}]]},
+ {q:"0:1로 지는 후반 40분, 당신은?",o:[["머리 부여잡고 \"아 진짜 왜…\"",{GRAB:2}],["자리 안 뜬다. 끝까지 응원",{LOYAL:2}],["음료를 벌써 몇 캔째",{SNACK:2}],["\"라인을 올려야지\" 훈수 모드",{ANALYST:2}]]},
+ {q:"경기 볼 때 내 손과 몸은?",o:[["계속 뭔가 먹거나 마신다",{SNACK:2}],["머리·얼굴을 자꾸 만진다",{GRAB:2}],["가만히 굳어 있다",{HOLD:2}],["박수·하이파이브로 바쁘다",{HIFIVE:2}]]},
+ {q:"함께 보는 사람들과의 거리감은?",o:[["모르는 사람이랑도 골 나면 얼싸안음",{HIFIVE:2}],["남이 웃으면 나도 따라 빵 터짐",{ECHO:2}],["몰입 중, 말 걸면 살짝 방해됨",{HOLD:1,ANALYST:1}],["내가 분위기를 소리로 이끈다",{LOUD:2}]]},
+ {q:"페널티킥, 키커가 공을 놓는 순간:",o:[["숨을 멈추고 화면만",{HOLD:2}],["\"넣어!!!\" 미리 소리부터",{LOUD:2}],["눈 가리거나 머리 감쌈",{GRAB:2}],["키커 성공률을 떠올림",{ANALYST:2}]]},
+ {q:"경기 다음 날의 나는?",o:[["하이라이트·전술 영상 정주행",{ANALYST:2}],["같이 본 사람들이랑 계속 톡",{HIFIVE:1,ECHO:1}],["져서 하루 종일 기분이 안 풀림",{GRAB:1,LOYAL:1}],["여운 짧음, 다음 경기 기대",{ECHO:1,SNACK:1}]]},
+ {q:"팀이 크게 지고 있을 때 채널은?",o:[["절대 안 돌린다, 끝까지",{LOYAL:2}],["괴로워서 잠깐 딴짓·주전부리",{GRAB:1,SNACK:1}],["\"왜 졌는지\" 분석 모드",{ANALYST:2}],["옆 사람이랑 수다로 버틴다",{ECHO:2}]]},
+ {q:"친구가 골 세리머니로 소리치면?",o:[["나도 덩달아 같이 소리침",{ECHO:2}],["내가 원조지, 더 크게",{LOUD:2}],["살짝 민망, 속으로만",{HOLD:2}],["하이파이브를 받아준다",{HIFIVE:2}]]},
+ {q:"라운지에서 내 지정석 스타일은?",o:[["화면 정면, 몰입존",{HOLD:1,ANALYST:1}],["사람 많은 가운데",{HIFIVE:1,ECHO:1}],["먹거리·음료 가까운 자리",{SNACK:2}],["일어서서 응원하기 좋은 통로",{LOUD:2}]]},
+ {q:"내 축구 사랑을 한마디로?",o:[["\"목소리로 응원한다\"",{LOUD:2}],["\"끝까지 함께한다\"",{LOYAL:2}],["\"머리로 즐긴다\"",{ANALYST:2}],["\"같이 봐야 제맛이다\"",{HIFIVE:1,ECHO:1}]]}
+];
+
+const qbox=document.getElementById('questions');
+QS.forEach((item,i)=>{
+  const div=document.createElement('div'); div.className='q';
+  const opts=item.o.map((o,j)=>`<label class="opt"><input type="radio" name="q${i}" value="${j}"><span>${o[0]}</span></label>`).join('');
+  div.innerHTML=`<div class="qh"><span class="qn">Q${i+1}.</span>${item.q}</div>${opts}`;
+  qbox.appendChild(div);
+});
+function updateProgress(){let d=0;QS.forEach((_,i)=>{if(document.querySelector(`input[name="q${i}"]:checked`))d++;});
+  document.getElementById('pcount').textContent=d+' / 10';document.getElementById('pbar').style.width=(d/10*100)+'%';}
+qbox.addEventListener('change',e=>{const g=e.target.closest('.q');g.querySelectorAll('.opt').forEach(l=>l.classList.remove('sel'));e.target.closest('.opt').classList.add('sel');updateProgress();});
+
+let currentType=null;
+document.getElementById('run').addEventListener('click',()=>{
+  if(!QS.every((_,i)=>document.querySelector(`input[name="q${i}"]:checked`))){toast('모든 문항에 답해주세요');return;}
+  const s={};Object.keys(TYPES).forEach(k=>s[k]=0);
+  QS.forEach((item,i)=>{const v=+document.querySelector(`input[name="q${i}"]:checked`).value;const m=item.o[v][1];for(const k in m)s[k]+=m[k];});
+  const r=Object.keys(s).sort((a,b)=>s[b]-s[a]);currentType=r[0];
+  document.getElementById('rt').textContent=TYPES[r[0]].name;
+  document.getElementById('rc').textContent="“"+TYPES[r[0]].c+"”";
+  document.getElementById('rsub').innerHTML=(s[r[1]]>0&&s[r[1]]>=s[r[0]]-2)?`서브 유형 · <b>${TYPES[r[1]].name}</b>`:'';
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'center'});
+});
+document.getElementById('retry').addEventListener('click',()=>{
+  document.querySelectorAll('.opt.sel').forEach(l=>l.classList.remove('sel'));
+  document.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);
+  document.getElementById('result').style.display='none';updateProgress();
+  document.getElementById('test').scrollIntoView({behavior:'smooth'});
+});
+function apply(){ if(APPLY_URL){ var url=APPLY_URL; if(currentType){ url+=(url.indexOf('?')>-1?'&':'?')+'type='+encodeURIComponent(TYPES[currentType].name); } window.open(url,'_blank'); } else{toast('신청 오픈 예정입니다 · 링크 연결 준비 중');} }
+document.querySelectorAll('.apply').forEach(b=>b.addEventListener('click',apply));
+function share(){
+  const dir = location.href.split('?')[0].split('#')[0].replace(/[^/]*$/,'');
+  const url = currentType ? (dir+'result-'+currentType+'.html') : (SHARE_URL||location.href);
+  const t = currentType?TYPES[currentType].name:'';
+  const text = t ? `나는 '${t}' 유형! 너는 어떤 관전 유형일까?` : '축구 볼 때 나는? 관전 유형 테스트';
+  if(navigator.share){navigator.share({title:'축구 볼 때 나는? · 필드밖 토크 살롱',text,url}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text+'\n'+url).then(()=>toast('공유 문구가 복사됐어요 · 붙여넣기 하세요')).catch(()=>toast('공유 링크 · '+url));}
+}
+document.getElementById('share').addEventListener('click',share);
+let tId;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tId);tId=setTimeout(()=>t.classList.remove('show'),2200);}
+</script>
+</body>
+</html>
