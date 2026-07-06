@@ -52,6 +52,8 @@
   .hero p{color:var(--muted); font-size:16px; margin:20px 0 28px; max-width:440px;}
   .hero .btn{padding:15px 32px; font-size:16px;}
   .hero .sub{margin-top:16px; font-size:12.5px; color:var(--dim);}
+  .kko{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; color:#3A1D1D; background:#FEE500; padding:10px 16px; border-radius:10px; text-decoration:none;}
+  .kko:hover{filter:brightness(1.04);}
 
   /* marquee */
   .marquee{background:var(--lime); overflow:hidden; white-space:nowrap;}
@@ -124,6 +126,8 @@
   .rescard .rsub{font-size:13px; color:var(--dim); margin-top:14px;}
   .rescard .rsub b{color:var(--lime);}
   .rescard .acts{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:24px;}
+  .rescard .rtag{font-size:13px; color:var(--dim); margin-top:16px;}
+  .tolounge{text-align:center; margin-top:24px; font-size:15px; font-weight:700; color:var(--lime);}
 
   /* price ticket */
   .price{position:relative; background:var(--surface); border:1.5px solid var(--lime); border-radius:18px; padding:34px 30px; text-align:center; overflow:hidden;}
@@ -192,11 +196,38 @@
     <h1>축구는<br>같이 볼 때<br><span class="u">완성된다.</span></h1>
     <p>잘 몰라도 괜찮아요. 뉴비부터 10년 이상 코어팬까지,<br>일주일에 한 번, 딱 세 번 만나요.</p>
     <a class="btn btn-gold apply">기수 신청하기</a>
-    <div class="sub">평일 수요일 저녁 8시 · 주말 토요일 오후 2시 · 90분 · 소수정예 8~12명</div>
+    <div class="sub">평일 1기 7/15(수) 저녁 8시 · 주말 1기 7/18(토) 오후 2시 · 소수정예 8~12명</div>
+    <div style="margin-top:16px;"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 기수 오픈 알림 받기</a></div>
   </div>
 </header>
 
 <div class="marquee"><div class="marquee-track">필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · 필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · </div></div>
+
+<section style="padding:56px 0 40px;" id="test">
+  <div class="wrap">
+    <div class="eyebrow">1분 테스트</div>
+    <h2>축구 볼 때,<br>나는 어떤 사람?</h2>
+    <p class="muted" style="margin:12px 0 24px; font-size:15px;">10문항이면 8가지 중 내 유형이 딱 나와요. 은근 정확해서 소름 — 결과 보면 그 친구도 바로 떠오를걸요.</p>
+    <div id="questions"></div>
+    <button class="btn btn-dark runbtn" id="run">결과 보기</button>
+    <div class="progress"><span id="pcount">0 / 10</span><div class="bar"><i id="pbar"></i></div></div>
+    <div id="result">
+      <div class="rescard">
+        <div class="rk">Your fan type</div>
+        <div class="rt" id="rt">—</div>
+        <div class="rc" id="rc">—</div>
+        <div class="rsub" id="rsub"></div>
+        <div class="acts">
+          <button class="btn btn-gold" id="share">결과 공유하기</button>
+          <a class="btn btn-line apply">기수 신청하기</a>
+          <button class="btn btn-line" id="retry">다시 하기</button>
+        </div>
+        <div class="rtag">이 결과, 딱 그 친구 아니에요? 공유해서 물어보기</div>
+      </div>
+      <div class="tolounge">↓ 나 같은 사람들이 을지로에 모여요</div>
+    </div>
+  </div>
+</section>
 
 <div class="empathy">
   <div class="wrap">
@@ -297,30 +328,6 @@
   </div>
 </section>
 
-<section style="padding-top:8px;" id="test">
-  <div class="wrap">
-    <div class="eyebrow">Fan type test</div>
-    <h2>축구 볼 때 나는?</h2>
-    <p class="muted" style="margin:12px 0 24px; font-size:15px;">1분이면 나와요. 8가지 관전 유형 중 내 모습은? 결과는 친구에게 공유할 수 있어요.</p>
-    <div id="questions"></div>
-    <button class="btn btn-dark runbtn" id="run">결과 보기</button>
-    <div class="progress"><span id="pcount">0 / 10</span><div class="bar"><i id="pbar"></i></div></div>
-    <div id="result">
-      <div class="rescard">
-        <div class="rk">Your fan type</div>
-        <div class="rt" id="rt">—</div>
-        <div class="rc" id="rc">—</div>
-        <div class="rsub" id="rsub"></div>
-        <div class="acts">
-          <button class="btn btn-gold" id="share">결과 공유하기</button>
-          <a class="btn btn-line apply">기수 신청하기</a>
-          <button class="btn btn-line" id="retry">다시 하기</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section style="padding-top:8px;">
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
@@ -351,6 +358,7 @@
       <div class="astep"><span class="n">STEP 2</span><div><div class="t">선결제로 자리 확정</div><div class="d">소수정예라 선결제 순으로 마감돼요.</div></div></div>
       <div class="astep"><span class="n">STEP 3</span><div><div class="t">입장 — 우리 기수 시작</div><div class="d">웰컴 안내 + 사전 미션. 시작 전부터 이미 멤버.</div></div></div>
     </div>
+    <p class="muted" style="margin-top:16px; font-size:13.5px;">궁금하거나 아직 고민된다면 <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); font-weight:600;">카카오채널</a>로 편하게 문의하고, 기수 오픈 알림도 받으세요.</p>
   </div>
 </section>
 
@@ -362,7 +370,7 @@
     <details><summary>혼자 신청해도 괜찮을까요?</summary><p>대부분 혼자 오세요. 입덕 시기가 다른 사람끼리 짝을 매칭해 자연스럽게 친해지도록 진행합니다.</p></details>
     <details><summary>술을 못 마셔도 되나요?</summary><p>물론이에요. 음료는 맥주 또는 무알콜·음료 중 선택. 마시러 오는 곳이 아니라 편하게 떠들러 오는 곳입니다.</p></details>
     <details><summary>89,000원이 아깝지 않을까요?</summary><p>세 번의 몰입 경험, 손에 남는 기록, 그리고 시즌 내내 같이 볼 친구들까지. 술자리 두 번 값으로 얻는 것치고는 남는 장사예요.</p></details>
-    <details><summary>평일과 주말 기수 차이는요?</summary><p>내용은 같아요. 평일 기수는 매주 수요일 저녁 8시(퇴근 후 아지트 무드), 주말 기수는 매주 토요일 오후 2시(낮부터 여유로운 무드)입니다. 라이프스타일에 맞게 고르세요.</p></details>
+    <details><summary>평일과 주말 기수 차이는요?</summary><p>내용은 같아요. 평일 1기는 7/15(수) 저녁 8시 시작(퇴근 후 아지트 무드), 주말 1기는 7/18(토) 오후 2시 시작(낮부터 여유로운 무드)이고, 이후 매주 같은 요일·시간에 총 3회입니다. 라이프스타일에 맞게 고르세요.</p></details>
   </div>
 </section>
 
@@ -370,13 +378,14 @@
   <div class="wrap">
     <h2>이번 월드컵,<br>혼자 보지 마세요.</h2>
     <a class="btn btn-gold apply">기수 신청하기</a>
+    <div style="margin-top:14px;"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 오픈 알림 받기</a></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="logo">OOF<b>.SEOUL</b></div>
-    <p>필드밖 토크 살롱 · 을지로 · @out_of_field_</p>
+    <p>필드밖 토크 살롱 · 을지로 · <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); text-decoration:none;">카카오채널</a> · @out_of_field_</p>
   </div>
 </footer>
 
@@ -397,16 +406,16 @@ const TYPES = {
   SNACK:{name:"긴장 먹방형",c:"긴장될수록 손이 바빠지는 타입."}
 };
 const QS=[
- {q:"우리 팀 선제골! 첫 반응은?",o:[["벌떡 일어나 온 라운지가 떠나가라 소리친다",{LOUD:2}],["옆 사람이랑 하이파이브·얼싸안기부터",{HIFIVE:2}],["\"오 좋아\" 조용히 주먹을 꽉 쥔다",{HOLD:1,LOYAL:1}],["\"이 골, 빌드업이 좋았지\" 복기한다",{ANALYST:2}]]},
- {q:"0:1로 지는 후반 40분, 당신은?",o:[["머리 부여잡고 \"아 진짜 왜…\"",{GRAB:2}],["자리 안 뜬다. 끝까지 응원",{LOYAL:2}],["음료를 벌써 몇 캔째",{SNACK:2}],["\"라인을 올려야지\" 훈수 모드",{ANALYST:2}]]},
- {q:"경기 볼 때 내 손과 몸은?",o:[["계속 뭔가 먹거나 마신다",{SNACK:2}],["머리·얼굴을 자꾸 만진다",{GRAB:2}],["가만히 굳어 있다",{HOLD:2}],["박수·하이파이브로 바쁘다",{HIFIVE:2}]]},
- {q:"함께 보는 사람들과의 거리감은?",o:[["모르는 사람이랑도 골 나면 얼싸안음",{HIFIVE:2}],["남이 웃으면 나도 따라 빵 터짐",{ECHO:2}],["몰입 중, 말 걸면 살짝 방해됨",{HOLD:1,ANALYST:1}],["내가 분위기를 소리로 이끈다",{LOUD:2}]]},
- {q:"페널티킥, 키커가 공을 놓는 순간:",o:[["숨을 멈추고 화면만",{HOLD:2}],["\"넣어!!!\" 미리 소리부터",{LOUD:2}],["눈 가리거나 머리 감쌈",{GRAB:2}],["키커 성공률을 떠올림",{ANALYST:2}]]},
- {q:"경기 다음 날의 나는?",o:[["하이라이트·전술 영상 정주행",{ANALYST:2}],["같이 본 사람들이랑 계속 톡",{HIFIVE:1,ECHO:1}],["져서 하루 종일 기분이 안 풀림",{GRAB:1,LOYAL:1}],["여운 짧음, 다음 경기 기대",{ECHO:1,SNACK:1}]]},
- {q:"팀이 크게 지고 있을 때 채널은?",o:[["절대 안 돌린다, 끝까지",{LOYAL:2}],["괴로워서 잠깐 딴짓·주전부리",{GRAB:1,SNACK:1}],["\"왜 졌는지\" 분석 모드",{ANALYST:2}],["옆 사람이랑 수다로 버틴다",{ECHO:2}]]},
- {q:"친구가 골 세리머니로 소리치면?",o:[["나도 덩달아 같이 소리침",{ECHO:2}],["내가 원조지, 더 크게",{LOUD:2}],["살짝 민망, 속으로만",{HOLD:2}],["하이파이브를 받아준다",{HIFIVE:2}]]},
- {q:"라운지에서 내 지정석 스타일은?",o:[["화면 정면, 몰입존",{HOLD:1,ANALYST:1}],["사람 많은 가운데",{HIFIVE:1,ECHO:1}],["먹거리·음료 가까운 자리",{SNACK:2}],["일어서서 응원하기 좋은 통로",{LOUD:2}]]},
- {q:"내 축구 사랑을 한마디로?",o:[["\"목소리로 응원한다\"",{LOUD:2}],["\"끝까지 함께한다\"",{LOYAL:2}],["\"머리로 즐긴다\"",{ANALYST:2}],["\"같이 봐야 제맛이다\"",{HIFIVE:1,ECHO:1}]]}
+ {q:"골 들어간 순간, 진짜 내 모습은?",o:[["벌떡 일어나서 온 가게가 쳐다볼 만큼 소리침",{LOUD:2}],["옆 사람(누구든) 붙잡고 얼싸안음",{HIFIVE:2}],["소리도 못 내고 주먹만 꽉 \"…좋았어\"",{HOLD:1,LOYAL:1}],["\"저 골 빌드업 봐라\" 어느새 해설 중",{ANALYST:2}]]},
+ {q:"0:1로 지는 후반 40분, 나는?",o:[["머리 부여잡고 \"아 왜 진짜…\"",{GRAB:2}],["끝날 때까지 자리 안 뜸, 계속 응원",{LOYAL:2}],["나도 모르게 음료만 벌써 세 캔째",{SNACK:2}],["\"지금 라인 올려야지\" 감독 빙의",{ANALYST:2}]]},
+ {q:"경기 볼 때 내 손과 몸은?",o:[["뭔가 계속 먹거나 마시는 중",{SNACK:2}],["머리·얼굴 계속 만짐 (불안)",{GRAB:2}],["숨도 안 쉬고 굳어 있음",{HOLD:2}],["박수·하이파이브로 바쁨",{HIFIVE:2}]]},
+ {q:"같이 보는 사람들이랑 나는?",o:[["모르는 사람이랑도 골 나면 얼싸안음",{HIFIVE:2}],["남 웃으면 나도 같이 빵 터짐",{ECHO:2}],["몰입 중이라 말 걸면 살짝 방해됨",{HOLD:1,ANALYST:1}],["내가 분위기 소리로 이끄는 편",{LOUD:2}]]},
+ {q:"PK 상황, 키커가 공 놓는 순간!",o:[["숨 멈추고 화면만 뚫어져라",{HOLD:2}],["\"넣어!!!\" 미리 소리부터 지름",{LOUD:2}],["눈 가리거나 고개 돌림",{GRAB:2}],["머릿속엔 키커 성공률 계산",{ANALYST:2}]]},
+ {q:"경기 끝난 다음 날의 나는?",o:[["하이라이트·전술 영상 정주행",{ANALYST:2}],["같이 본 사람들이랑 계속 톡",{HIFIVE:1,ECHO:1}],["져서 하루 종일 기분 안 풀림",{GRAB:1,LOYAL:1}],["여운 짧음, 벌써 다음 경기 기대",{ECHO:1,SNACK:1}]]},
+ {q:"우리 팀이 대참사로 지고 있을 때 채널은?",o:[["절대 안 돌림. 끝까지 본다",{LOYAL:2}],["괴로워서 잠깐 딴짓·주전부리",{GRAB:1,SNACK:1}],["\"왜 졌는지\" 벌써 분석 모드",{ANALYST:2}],["옆 사람이랑 수다로 버팀",{ECHO:2}]]},
+ {q:"친구가 골 세리머니로 소리 지르면?",o:[["나도 덩달아 같이 소리침",{ECHO:2}],["내가 원조지, 더 크게",{LOUD:2}],["살짝 민망… 속으로만 좋아함",{HOLD:2}],["하이파이브 받아줌",{HIFIVE:2}]]},
+ {q:"라운지에서 내 명당은?",o:[["화면 정면, 방해 없는 몰입존",{HOLD:1,ANALYST:1}],["사람 많은 한가운데",{HIFIVE:1,ECHO:1}],["먹을 거·음료 가까운 자리",{SNACK:2}],["일어서서 응원하기 좋은 통로",{LOUD:2}]]},
+ {q:"내 축구 사랑을 한마디로?",o:[["\"목소리로 응원한다\"",{LOUD:2}],["\"끝까지 함께한다\"",{LOYAL:2}],["\"머리로 즐긴다\"",{ANALYST:2}],["\"같이 봐야 제맛이지\"",{HIFIVE:1,ECHO:1}]]}
 ];
 
 const qbox=document.getElementById('questions');
@@ -444,7 +453,7 @@ function share(){
   const dir = location.href.split('?')[0].split('#')[0].replace(/[^/]*$/,'');
   const url = currentType ? (dir+'result-'+currentType+'.html') : (SHARE_URL||location.href);
   const t = currentType?TYPES[currentType].name:'';
-  const text = t ? `나는 '${t}' 유형! 너는 어떤 관전 유형일까?` : '축구 볼 때 나는? 관전 유형 테스트';
+  const text = t ? `나 '${t}'형 나왔어. 너는 어떤 타입일까? (은근 정확함)` : '축구 볼 때 나는? 관전 유형 테스트';
   if(navigator.share){navigator.share({title:'축구 볼 때 나는? · 필드밖 토크 살롱',text,url}).catch(()=>{});}
   else{navigator.clipboard.writeText(text+'\n'+url).then(()=>toast('공유 문구가 복사됐어요 · 붙여넣기 하세요')).catch(()=>toast('공유 링크 · '+url));}
 }
