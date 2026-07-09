@@ -6,172 +6,192 @@
 <title>필드밖 토크 살롱 · OOF 을지로</title>
 <!-- 신청/공유 링크 교체: 아래 <script>의 APPLY_URL, SHARE_URL 값만 바꾸세요 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B0E12; --surface:#14181F; --surface2:#1A1F27; --line:#262B33; --line2:#333A44;
-    --lime:#DDFF00; --ink:#FFFFFF; --muted:#AEB4BC; --dim:#6B7480; --r:14px;
+    --bg:#06080B; --ink:#F4F6F8; --muted:#9AA3AD; --dim:#5E6772;
+    --lime:#DDFF00; --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+    --r:16px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--ink);
+  body{background:var(--bg); color:var(--ink); position:relative;
     font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
     line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
-    word-break:keep-all; overflow-wrap:break-word;}
-  .wrap{max-width:720px; margin:0 auto; padding:0 22px;}
-  section{padding:60px 0;}
-  .eyebrow{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.1em; color:#0B0E12; background:var(--lime); padding:4px 9px; border-radius:5px; text-transform:uppercase; margin-bottom:16px;}
-  h2{font-family:'Black Han Sans',sans-serif; font-weight:400; font-size:clamp(26px,7.5vw,38px); line-height:1.14; color:#fff; letter-spacing:-.01em;}
-  h3{font-size:17px; font-weight:700; color:#fff;}
-  p{color:#fff;}
+    word-break:keep-all; overflow-wrap:break-word; overflow-x:hidden;}
+
+  /* cinematic overlays (floodlight + grain + vignette) */
+  .fx{position:fixed; inset:0; pointer-events:none; z-index:0;}
+  .fx.flood{background:
+      radial-gradient(90% 40% at 82% -6%, rgba(221,255,0,.16), rgba(221,255,0,.04) 30%, transparent 56%),
+      radial-gradient(70% 34% at 6% 2%, rgba(120,170,255,.08), transparent 52%);}
+  .fx.vig{background:radial-gradient(130% 80% at 50% 22%, transparent 60%, rgba(0,0,0,.5) 100%);}
+  .fx.grain{opacity:.07; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+
+  .wrap{max-width:720px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+  section{padding:66px 0; position:relative; z-index:1;}
+
+  /* kicker */
+  .kick{display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600;
+    letter-spacing:.24em; color:var(--muted); text-transform:uppercase; margin-bottom:18px;}
+  .kick .dot{width:6px; height:6px; border-radius:50%; background:var(--lime); box-shadow:0 0 8px var(--lime);}
+
+  h1{font-weight:900; font-size:clamp(46px,13vw,72px); line-height:.98; letter-spacing:-.04em; color:#fff;}
+  h1 .u{color:var(--lime);}
+  h2{font-weight:900; font-size:clamp(29px,7.6vw,42px); line-height:1.06; letter-spacing:-.035em; color:#fff;}
+  h2 .u{color:var(--lime);}
+  h3{font-size:16px; font-weight:800; color:#fff;}
   .muted{color:var(--muted);}
-  .btn{display:inline-block; font-family:inherit; font-size:15px; font-weight:700; padding:14px 26px; border-radius:12px; cursor:pointer; border:1px solid transparent; text-decoration:none; transition:.15s; letter-spacing:-.01em;}
-  .btn-gold,.btn-dark{background:var(--lime); color:#0B0E12;}
+
+  .btn{display:inline-block; font-family:inherit; font-size:15px; font-weight:800; padding:14px 28px;
+    border-radius:30px; cursor:pointer; border:1px solid transparent; text-decoration:none; transition:.15s; letter-spacing:-.01em;}
+  .btn-gold,.btn-dark{background:var(--lime); color:#06080B; box-shadow:0 0 30px rgba(221,255,0,.22);}
   .btn-gold:hover,.btn-dark:hover{filter:brightness(1.06);}
   .btn-line{background:transparent; color:#fff; border-color:var(--line2);}
   .btn-line:hover{border-color:#fff;}
-
-  /* nav */
-  nav{position:sticky; top:0; z-index:40; background:rgba(11,14,18,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:58px;}
-  .logo{font-size:19px; font-weight:800; letter-spacing:.02em; color:#fff;}
-  .logo b{background:var(--lime); color:#0B0E12; padding:0 5px; border-radius:4px; margin-left:1px; font-weight:800;}
-  nav .btn{padding:9px 18px; font-size:14px;}
-
-  /* hero */
-  .hero{position:relative; overflow:hidden; padding:52px 0 44px;}
-  .hero .wrap{position:relative; z-index:2;}
-  .hero-halo{position:absolute; top:-18px; right:-34px; z-index:1; opacity:.9; pointer-events:none;}
-  .hero-sticker{position:absolute; top:60px; right:20px; z-index:3; width:66px; height:66px; border-radius:50%; background:var(--lime); color:#0B0E12; border:3px solid var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-12deg); font-family:'Black Han Sans',sans-serif; font-size:19px; line-height:1; text-align:center;}
-  .hero-sticker span{display:block; font-size:12px; margin-top:2px;}
-  .hero .brand{font-size:14px; font-weight:800; letter-spacing:.12em; color:#fff; margin-bottom:18px;}
-  .hero .brand span{color:var(--lime);}
-  .hero .tag{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.08em; color:#0B0E12; background:var(--lime); padding:5px 10px; border-radius:6px; margin-bottom:20px;}
-  .hero h1{font-family:'Black Han Sans',sans-serif; font-weight:400; font-size:clamp(44px,13vw,64px); line-height:.98; letter-spacing:-1px; color:#fff;}
-  .hero h1 .u{color:var(--lime);}
-  .hero p{color:var(--muted); font-size:16px; margin:20px 0 28px; max-width:440px;}
-  .hero .btn{padding:15px 32px; font-size:16px;}
-  .hero .sub{margin-top:16px; font-size:12.5px; color:var(--dim);}
-  .kko{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; color:#3A1D1D; background:#FEE500; padding:10px 16px; border-radius:10px; text-decoration:none;}
+  .kko{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; color:#3A1D1D; background:#FEE500; padding:11px 18px; border-radius:30px; text-decoration:none;}
   .kko:hover{filter:brightness(1.04);}
 
+  /* nav */
+  nav{position:sticky; top:0; z-index:40; background:rgba(6,8,11,.72); backdrop-filter:blur(12px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px;}
+  .logo{font-size:18px; font-weight:800; letter-spacing:.04em; color:#fff;}
+  .logo b{background:var(--lime); color:#06080B; padding:1px 5px; border-radius:4px; margin-left:1px; font-weight:800;}
+  nav .btn{padding:9px 18px; font-size:13.5px;}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; padding:78px 0 58px;}
+  .hero .brand{font-size:13px; font-weight:800; letter-spacing:.14em; color:var(--muted); margin-bottom:26px;}
+  .hero .brand span{color:var(--lime);}
+  .hero p.lead{color:var(--muted); font-size:16px; margin:22px 0 30px; max-width:440px; line-height:1.6;}
+  .hero .btn{padding:16px 34px; font-size:16px;}
+  .hero .date{margin-top:20px; font-size:12px; color:var(--dim); letter-spacing:.01em; padding-top:16px; border-top:1px solid var(--line); max-width:460px;}
+  .sticker{position:absolute; top:88px; right:20px; z-index:5; width:70px; height:70px; border-radius:50%;
+    background:var(--lime); color:#06080B; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transform:rotate(-11deg); font-weight:900; font-size:20px; line-height:1; text-align:center;
+    border:3px solid var(--bg); box-shadow:0 0 30px rgba(221,255,0,.45);}
+  .sticker span{display:block; font-size:9.5px; margin-top:2px; letter-spacing:.14em;}
+  .kkowrap{margin-top:18px;}
+
   /* marquee */
-  .marquee{background:var(--lime); overflow:hidden; white-space:nowrap;}
-  .marquee-track{display:inline-block; white-space:nowrap; color:#0B0E12; font-weight:800; font-size:13px; letter-spacing:.02em; padding:9px 0; animation:mq 24s linear infinite;}
+  .marquee{overflow:hidden; white-space:nowrap; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.015);}
+  .marquee-track{display:inline-block; white-space:nowrap; color:var(--muted); font-weight:600; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; padding:12px 0; animation:mq 26s linear infinite;}
+  .marquee-track b{color:var(--lime); font-weight:700;}
   @keyframes mq{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 
-  /* empathy */
-  .empathy{background:var(--surface); text-align:center; padding:52px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .empathy p{font-size:19px; font-weight:600; line-height:1.55; color:#fff;}
-  .empathy .s{display:block; font-size:14.5px; font-weight:400; color:var(--muted); margin-top:12px;}
+  /* big quote / empathy */
+  .lead-quote{padding:70px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .lead-quote .q{font-size:clamp(21px,5vw,27px); font-weight:800; line-height:1.4; color:#fff; letter-spacing:-.02em;}
+  .lead-quote .s{display:block; font-size:15px; font-weight:400; color:var(--muted); margin-top:16px; letter-spacing:-.01em;}
+
+  /* editorial rows */
+  .rows{margin-top:26px;}
+  .row{display:flex; gap:18px; padding:22px 0; border-top:1px solid var(--line);}
+  .row:last-child{border-bottom:1px solid var(--line);}
+  .row .idx{font-size:30px; font-weight:900; color:var(--lime); line-height:1; letter-spacing:-.04em; min-width:48px; opacity:.92;}
+  .row .ov{font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--lime); margin-bottom:7px;}
+  .row .rt{font-size:17px; font-weight:800; color:#fff; margin-bottom:5px;}
+  .row .rd{font-size:14px; color:var(--muted); line-height:1.62;}
 
   /* chips */
-  .chips{display:flex; gap:9px; flex-wrap:wrap; margin-top:20px;}
-  .chip{font-size:14px; font-weight:600; padding:9px 15px; border-radius:999px; background:var(--surface); border:1px solid var(--line2); color:#fff;}
+  .chips{display:flex; gap:9px; flex-wrap:wrap; margin-top:22px;}
+  .chip{font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px; background:transparent; border:1px solid var(--line2); color:#fff;}
   .chip .d{color:var(--muted); font-weight:400; margin-left:6px; font-size:13px;}
 
-  /* grids */
-  .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px;}
-  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px;}
-  .vcard{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:20px;}
-  .vcard .k{font-size:12.5px; color:var(--lime); font-weight:700; margin-bottom:8px; letter-spacing:.02em;}
-  .vcard .t{font-size:16px; font-weight:700; margin-bottom:6px; color:#fff;}
-  .vcard .d{font-size:13.5px; color:var(--muted); line-height:1.6;}
-
-  /* steps */
-  .steps{margin-top:22px; display:flex; flex-direction:column; gap:10px;}
-  .step{display:flex; gap:16px; align-items:flex-start; padding:20px; border:1px solid var(--line); border-radius:var(--r); background:var(--surface);}
-  .step .n{font-family:'Black Han Sans',sans-serif; font-size:16px; color:#0B0E12; background:var(--lime); min-width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center;}
-  .step h3{margin-bottom:5px;}
-  .step p{font-size:14px; color:var(--muted);}
-  .step .out{display:inline-block; margin-top:9px; font-size:12.5px; color:#0B0E12; background:var(--lime); border-radius:8px; padding:4px 10px; font-weight:700;}
-
-  /* space */
-  .space{background:var(--surface); border:1.5px solid var(--lime); border-radius:18px;}
-  .space .inner{padding:36px 30px;}
-  .space .eyebrow{color:#0B0E12;}
-  .space h2{color:#fff;}
-  .space p{color:var(--muted); font-size:15px; margin-top:12px;}
-  .space ul{list-style:none; margin-top:18px; display:flex; gap:9px; flex-wrap:wrap;}
-  .space li{font-size:13px; color:#fff; border:1px solid var(--line2); border-radius:999px; padding:7px 13px;}
+  /* place */
+  .place{border:1px solid rgba(221,255,0,.35); border-radius:20px; padding:38px 32px; position:relative; overflow:hidden;
+    background:radial-gradient(120% 80% at 100% 0%, rgba(221,255,0,.06), transparent 55%);}
+  .place p{color:var(--muted); font-size:15px; margin-top:14px; line-height:1.7;}
+  .place ul{list-style:none; margin-top:20px; display:flex; gap:9px; flex-wrap:wrap;}
+  .place li{font-size:13px; color:#fff; border:1px solid var(--line2); border-radius:999px; padding:8px 14px;}
 
   /* host */
-  .host{display:flex; gap:18px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:24px; margin-top:20px;}
-  .host-pic{width:74px; height:74px; border-radius:50%; background:var(--bg); color:var(--lime); font-family:'Black Han Sans',sans-serif; font-size:30px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1.5px solid var(--lime);}
-  .host-name{font-size:18px; font-weight:800; color:#fff;}
-  .host-name span{font-size:13px; font-weight:500; color:var(--muted); margin-left:6px;}
-  .host-tag{font-size:14px; color:#fff; margin-top:6px; font-weight:600;}
-  .host-bio{font-size:14px; color:var(--muted); margin-top:10px; line-height:1.75;}
-  .host-chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
-  .host-chips span{font-size:12.5px; font-weight:600; background:var(--surface2); border:1px solid var(--line2); color:#fff; border-radius:999px; padding:6px 12px;}
+  .host{display:flex; gap:20px; align-items:flex-start; border-top:1px solid var(--line); padding-top:26px; margin-top:26px;}
+  .host-pic{width:78px; height:78px; border-radius:50%; background:transparent; color:var(--lime); font-weight:900; font-size:30px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1.5px solid var(--lime); box-shadow:0 0 24px rgba(221,255,0,.2);}
+  .host-name{font-size:19px; font-weight:800; color:#fff;}
+  .host-name span{font-size:13px; font-weight:500; color:var(--muted); margin-left:7px;}
+  .host-tag{font-size:14px; color:#fff; margin-top:7px; font-weight:600;}
+  .host-bio{font-size:14px; color:var(--muted); margin-top:11px; line-height:1.78;}
+  .host-chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:15px;}
+  .host-chips span{font-size:12.5px; font-weight:600; background:transparent; border:1px solid var(--line2); color:#fff; border-radius:999px; padding:6px 13px;}
   @media(max-width:560px){ .host{flex-direction:column; gap:16px;} }
 
-  /* quiz */
-  .q{border:1px solid var(--line); border-radius:var(--r); padding:20px; margin-bottom:11px; background:var(--surface);}
-  .q .qh{font-weight:700; font-size:15.5px; margin-bottom:13px; color:#fff;}
-  .q .qh .qn{color:var(--lime); margin-right:7px;}
-  label.opt{display:flex; gap:11px; align-items:flex-start; padding:11px 13px; border:1px solid var(--line2); border-radius:10px; margin-bottom:8px; cursor:pointer; font-size:14.5px; color:#fff; transition:.12s;}
-  label.opt:hover{border-color:#5A6472;}
-  label.opt.sel{border-color:var(--lime); background:rgba(221,255,0,.10);}
-  label.opt input{accent-color:var(--lime); margin-top:3px;}
-  .runbtn{width:100%; margin-top:6px; padding:16px; font-size:16px;}
-  .progress{position:sticky; bottom:14px; background:rgba(20,24,31,.92); backdrop-filter:blur(8px); border:1px solid var(--line2); border-radius:12px; padding:11px 15px; margin-top:16px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:12px;}
-  .bar{flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden;}
-  .bar i{display:block; height:100%; width:0; background:var(--lime); transition:.3s;}
-  #result{display:none; margin-top:10px;}
-  .rescard{background:var(--bg); border:1.5px solid var(--lime); border-radius:18px; padding:34px 24px; text-align:center;}
-  .rescard .rk{font-size:12px; letter-spacing:.14em; color:var(--dim); font-weight:600; text-transform:uppercase;}
-  .rescard .rt{font-family:'Black Han Sans',sans-serif; font-size:34px; color:var(--lime); margin:12px 0 8px; letter-spacing:-.01em;}
-  .rescard .rc{font-size:16px; color:#E7E7E7; max-width:400px; margin:0 auto;}
-  .rescard .rsub{font-size:13px; color:var(--dim); margin-top:14px;}
-  .rescard .rsub b{color:var(--lime);}
-  .rescard .acts{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:24px;}
-  .rescard .rtag{font-size:13px; color:var(--dim); margin-top:16px;}
-  .tolounge{text-align:center; margin-top:24px; font-size:15px; font-weight:700; color:var(--lime);}
+  /* after teaser */
+  .after b{color:var(--lime);}
 
-  /* price ticket */
-  .price{position:relative; background:var(--surface); border:1.5px solid var(--lime); border-radius:18px; padding:34px 30px; text-align:center; overflow:hidden;}
-  .price:before,.price:after{content:""; position:absolute; width:26px; height:26px; border-radius:50%; background:var(--bg); border:1.5px solid var(--lime); top:50%; transform:translateY(-50%);}
-  .price:before{left:-14px;} .price:after{right:-14px;}
-  .price .early{font-size:13px; font-weight:700; color:#0B0E12; background:var(--lime); display:inline-block; padding:5px 13px; border-radius:999px; margin-bottom:16px;}
+  /* quiz */
+  .q{border-top:1px solid var(--line); padding:24px 0;}
+  .q:first-child{border-top:none;}
+  .q .qh{font-weight:800; font-size:16px; margin-bottom:15px; color:#fff;}
+  .q .qh .qn{color:var(--lime); margin-right:9px; font-weight:900;}
+  label.opt{display:flex; gap:11px; align-items:flex-start; padding:12px 14px; border:1px solid var(--line2); border-radius:12px; margin-bottom:9px; cursor:pointer; font-size:14.5px; color:#fff; transition:.12s;}
+  label.opt:hover{border-color:#6a7482;}
+  label.opt.sel{border-color:var(--lime); background:rgba(221,255,0,.08); box-shadow:0 0 20px rgba(221,255,0,.1);}
+  label.opt input{accent-color:var(--lime); margin-top:3px;}
+  .runbtn{width:100%; margin-top:14px; padding:17px; font-size:16px;}
+  .progress{position:sticky; bottom:14px; background:rgba(10,13,17,.9); backdrop-filter:blur(10px); border:1px solid var(--line2); border-radius:14px; padding:12px 16px; margin-top:18px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:12px; z-index:20;}
+  .bar{flex:1; height:6px; background:rgba(255,255,255,.1); border-radius:3px; overflow:hidden;}
+  .bar i{display:block; height:100%; width:0; background:var(--lime); transition:.3s;}
+  #result{display:none; margin-top:24px;}
+  .rescard{border:1.5px solid var(--lime); border-radius:20px; padding:38px 26px; text-align:center; position:relative; overflow:hidden;
+    background:radial-gradient(100% 70% at 50% 0%, rgba(221,255,0,.08), transparent 60%);}
+  .rescard .rk{font-size:11px; letter-spacing:.22em; color:var(--dim); font-weight:600; text-transform:uppercase;}
+  .rescard .rt{font-weight:900; font-size:36px; color:var(--lime); margin:14px 0 10px; letter-spacing:-.03em;}
+  .rescard .rc{font-size:16px; color:#E7E7E7; max-width:400px; margin:0 auto; line-height:1.6;}
+  .rescard .rsub{font-size:13px; color:var(--dim); margin-top:15px;}
+  .rescard .rsub b{color:var(--lime);}
+  .rescard .acts{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:26px;}
+  .rescard .rtag{font-size:13px; color:var(--dim); margin-top:18px;}
+  .tolounge{text-align:center; margin-top:26px; font-size:15px; font-weight:800; color:var(--lime);}
+
+  /* pricing ticket */
+  .price{position:relative; border:1.5px solid var(--lime); border-radius:20px; padding:38px 32px; text-align:center; overflow:hidden;
+    background:radial-gradient(120% 80% at 50% 0%, rgba(221,255,0,.07), transparent 58%);}
+  .price:before,.price:after{content:""; position:absolute; width:28px; height:28px; border-radius:50%; background:var(--bg); border:1.5px solid var(--lime); top:52%; transform:translateY(-50%);}
+  .price:before{left:-15px;} .price:after{right:-15px;}
+  .price .early{font-size:13px; font-weight:800; color:#06080B; background:var(--lime); display:inline-block; padding:6px 14px; border-radius:999px; margin-bottom:18px; box-shadow:0 0 24px rgba(221,255,0,.3);}
   .price .old{font-size:15px; color:var(--muted); text-decoration:line-through;}
-  .price .now{font-family:'Black Han Sans',sans-serif; font-size:52px; color:#fff; line-height:1.05;}
-  .price .per{font-size:13.5px; color:var(--muted); margin-top:6px;}
-  .price ul{list-style:none; text-align:left; max-width:360px; margin:22px auto 0;}
-  .price li{font-size:14px; padding:10px 0 10px 26px; position:relative; border-top:1px solid var(--line2); color:#fff;}
-  .price li:before{content:"✓"; position:absolute; left:2px; color:var(--lime); font-weight:700;}
-  .price .btn{margin-top:24px; padding:15px 36px; font-size:16px;}
-  .policy{font-size:12.5px; color:var(--muted); margin-top:16px; line-height:1.7;}
+  .price .now{font-weight:900; font-size:56px; color:#fff; line-height:1.04; letter-spacing:-.03em;}
+  .price .per{font-size:13.5px; color:var(--muted); margin-top:8px;}
+  .price ul{list-style:none; text-align:left; max-width:380px; margin:24px auto 0;}
+  .price li{font-size:14px; padding:11px 0 11px 28px; position:relative; border-top:1px solid var(--line); color:#fff;}
+  .price li:before{content:"✓"; position:absolute; left:2px; color:var(--lime); font-weight:800;}
+  .price .btn{margin-top:26px; padding:16px 38px; font-size:16px;}
+  .policy{font-size:12.5px; color:var(--muted); margin-top:18px; line-height:1.7;}
 
   /* apply steps */
-  .astep{display:flex; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line);}
-  .astep:last-child{border-bottom:none;}
-  .astep .n{font-size:13px; font-weight:800; color:var(--lime);}
-  .astep .t{font-size:15px; font-weight:700; color:#fff;}
-  .astep .d{font-size:13.5px; color:var(--muted);}
+  .astep{display:flex; gap:16px; align-items:center; padding:20px 0; border-top:1px solid var(--line);}
+  .astep:last-child{border-bottom:1px solid var(--line);}
+  .astep .n{font-size:12px; font-weight:800; letter-spacing:.12em; color:var(--lime); min-width:52px;}
+  .astep .t{font-size:15.5px; font-weight:800; color:#fff;}
+  .astep .d{font-size:13.5px; color:var(--muted); margin-top:2px;}
 
-  details{border-bottom:1px solid var(--line); padding:18px 2px;}
-  details summary{cursor:pointer; font-weight:600; font-size:15.5px; color:#fff; list-style:none; display:flex; justify-content:space-between; align-items:center;}
+  details{border-top:1px solid var(--line); padding:20px 2px;}
+  details:last-of-type{border-bottom:1px solid var(--line);}
+  details summary{cursor:pointer; font-weight:700; font-size:15.5px; color:#fff; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:14px;}
   details summary::-webkit-details-marker{display:none;}
-  details summary:after{content:"+"; color:var(--lime); font-size:22px; font-weight:400;}
+  details summary:after{content:"+"; color:var(--lime); font-size:22px; font-weight:400; flex-shrink:0;}
   details[open] summary:after{content:"−";}
-  details p{color:var(--muted); font-size:14.5px; margin-top:12px;}
+  details p{color:var(--muted); font-size:14.5px; margin-top:13px; line-height:1.7;}
 
-  .finalcta{text-align:center; background:var(--surface); border-top:1px solid var(--line);}
-  .finalcta h2{color:#fff; font-size:clamp(32px,9vw,46px);}
-  .finalcta .btn{margin-top:22px; padding:16px 38px; font-size:16px;}
+  .finalcta{text-align:center; border-top:1px solid var(--line); position:relative; overflow:hidden;
+    background:radial-gradient(80% 60% at 50% 0%, rgba(221,255,0,.08), transparent 60%);}
+  .finalcta h2{font-size:clamp(34px,9.5vw,50px);}
+  .finalcta .btn{margin-top:26px; padding:17px 40px; font-size:16px;}
 
-  footer{padding:40px 0; text-align:center; border-top:1px solid var(--line);}
+  footer{padding:46px 0; text-align:center; border-top:1px solid var(--line);}
   footer .logo{font-size:22px;}
-  footer p{font-size:13px; color:var(--muted); margin-top:10px;}
+  footer p{font-size:13px; color:var(--muted); margin-top:12px;}
 
-  #toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(30px); background:var(--lime); color:#0B0E12; font-size:14px; font-weight:700; padding:13px 22px; border-radius:12px; opacity:0; pointer-events:none; transition:.3s; z-index:100;}
+  #toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(30px); background:var(--lime); color:#06080B; font-size:14px; font-weight:800; padding:14px 24px; border-radius:14px; opacity:0; pointer-events:none; transition:.3s; z-index:100; box-shadow:0 8px 30px rgba(221,255,0,.3);}
   #toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-
-  @media(max-width:560px){ .grid{grid-template-columns:1fr;} .grid3{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
+<div class="fx flood"></div>
+<div class="fx vig"></div>
+<div class="fx grain"></div>
 
 <nav>
   <div class="wrap">
@@ -181,34 +201,26 @@
 </nav>
 
 <header class="hero">
-  <svg class="hero-halo" width="220" height="200" viewBox="0 0 220 200" aria-hidden="true">
-    <circle cx="150" cy="66" r="86" fill="none" stroke="#DDFF00" stroke-width="2"/>
-    <circle cx="150" cy="66" r="56" fill="none" stroke="#DDFF00" stroke-width="1.4" opacity=".5"/>
-    <circle cx="150" cy="66" r="7" fill="#DDFF00"/>
-    <circle cx="60" cy="150" r="6" fill="#DDFF00"/>
-    <circle cx="86" cy="176" r="4" fill="#DDFF00" opacity=".8"/>
-    <circle cx="40" cy="180" r="3" fill="#DDFF00" opacity=".55"/>
-  </svg>
-  <div class="hero-sticker">8석<span>한정</span></div>
+  <div class="sticker">8석<span>LIMITED</span></div>
   <div class="wrap">
-    <div class="brand">OOF<span>.SEOUL</span></div>
-    <span class="tag">매주 빅매치 · 을지로</span>
+    <div class="brand">OUT OF FIELD<span>.</span>SEOUL</div>
+    <div class="kick"><span class="dot"></span>Matchday · 을지로</div>
     <h1>축구는<br>같이 볼 때<br><span class="u">완성된다.</span></h1>
-    <p>잘 몰라도 괜찮아요. 뉴비부터 10년 이상 코어팬까지,<br>일주일에 한 번, 딱 세 번 만나요.</p>
-    <a class="btn btn-gold apply">기수 신청하기</a>
-    <div class="sub">평일 1기 7/22(수) 저녁 8시 · 주말 1기 7/25(토) 오후 2시 · 소수정예 8~12명</div>
-    <div style="margin-top:16px;"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 기수 오픈 알림 받기</a></div>
+    <p class="lead">잘 몰라도 괜찮아요. 뉴비부터 10년 이상 코어팬까지,<br>일주일에 한 번, 딱 세 번 만나요.</p>
+    <a class="btn btn-gold apply">기수 신청하기 →</a>
+    <div class="date">평일 1기 7/22(수) 저녁 8시 · 주말 1기 7/25(토) 오후 2시 · 소수정예 8~12명</div>
+    <div class="kkowrap"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 기수 오픈 알림 받기</a></div>
   </div>
 </header>
 
-<div class="marquee"><div class="marquee-track">필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · 필드밖 토크 살롱 · 축구 볼 때 나는? · 을지로 · </div></div>
+<div class="marquee"><div class="marquee-track">필드밖 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> 필드밖 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> </div></div>
 
-<section style="padding:56px 0 40px;" id="test">
+<section id="test">
   <div class="wrap">
-    <div class="eyebrow">1분 테스트</div>
-    <h2>축구 볼 때,<br>나는 어떤 사람?</h2>
-    <p class="muted" style="margin:12px 0 24px; font-size:15px;">10문항이면 8가지 중 내 유형이 딱 나와요. 은근 정확해서 소름 — 결과 보면 그 친구도 바로 떠오를걸요.</p>
-    <div id="questions"></div>
+    <div class="kick"><span class="dot"></span>1분 테스트</div>
+    <h2>축구 볼 때,<br><span class="u">나는 어떤 사람?</span></h2>
+    <p class="muted" style="margin:16px 0 8px; font-size:15px;">10문항이면 8가지 중 내 유형이 딱 나와요. 은근 정확해서 소름 — 결과 보면 그 친구도 바로 떠오를걸요.</p>
+    <div id="questions" style="margin-top:20px;"></div>
     <button class="btn btn-dark runbtn" id="run">결과 보기</button>
     <div class="progress"><span id="pcount">0 / 10</span><div class="bar"><i id="pbar"></i></div></div>
     <div id="result">
@@ -229,30 +241,30 @@
   </div>
 </section>
 
-<div class="empathy">
+<div class="lead-quote">
   <div class="wrap">
-    <p>“축구 깊게 얘기할 사람이, 왜 이렇게 없을까.”
+    <p class="q">“축구 깊게 얘기할 사람이,<br>왜 이렇게 없을까.”
       <span class="s">회사에도 일상에도 이만큼 좋아하는 사람이 없어서. 그래서 만들었어요.</span></p>
   </div>
 </div>
 
 <section>
   <div class="wrap">
-    <div class="eyebrow">Why join</div>
+    <div class="kick"><span class="dot"></span>Why join</div>
     <h2>왜 좋냐면.</h2>
-    <div class="grid3">
-      <div class="vcard"><div class="k">연결</div><div class="t">축구로 만나는 새 친구들</div><div class="d">뉴비부터 10년 이상 코어팬까지, 혼자선 만날 일 없던 다양한 축구팬과 이어져요.</div></div>
-      <div class="vcard"><div class="k">공감</div><div class="t">눈치 없이, 편하게</div><div class="d">말이 통하는 사람들끼리. 무시도 설명충도 없이 마음껏 축구 얘기.</div></div>
-      <div class="vcard"><div class="k">몰입</div><div class="t">두 배로 재밌어진다</div><div class="d">같이 보고 떠들면 몰입감이 달라요. 혼자 보던 경기가 이벤트가 됩니다.</div></div>
+    <div class="rows">
+      <div class="row"><div class="idx">01</div><div><div class="ov">연결</div><div class="rt">축구로 만나는 새 친구들</div><div class="rd">뉴비부터 10년 이상 코어팬까지, 혼자선 만날 일 없던 다양한 축구팬과 이어져요.</div></div></div>
+      <div class="row"><div class="idx">02</div><div><div class="ov">공감</div><div class="rt">눈치 없이, 편하게</div><div class="rd">말이 통하는 사람들끼리. 무시도 설명충도 없이 마음껏 축구 얘기.</div></div></div>
+      <div class="row"><div class="idx">03</div><div><div class="ov">몰입</div><div class="rt">두 배로 재밌어진다</div><div class="rd">같이 보고 떠들면 몰입감이 달라요. 혼자 보던 경기가 이벤트가 됩니다.</div></div></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">Who comes</div>
+    <div class="kick"><span class="dot"></span>Who comes</div>
     <h2>이런 사람들이 옵니다.</h2>
-    <p class="muted" style="margin-top:14px; font-size:15.5px;">지식의 깊이는 입장권이 아니에요. ‘입덕 시기’가 달라도 한 테이블에서 대등하게 떠듭니다.</p>
+    <p class="muted" style="margin-top:16px; font-size:15.5px;">지식의 깊이는 입장권이 아니에요. ‘입덕 시기’가 달라도 한 테이블에서 대등하게 떠듭니다.</p>
     <div class="chips">
       <span class="chip">이번 시즌부터 <span class="d">뉴비 환영</span></span>
       <span class="chip">빅매치만 챙겨보는 <span class="d">라이트팬</span></span>
@@ -262,60 +274,48 @@
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">What you'd miss</div>
-    <h2>혼자 보면, 놓치는 것들.</h2>
-    <div class="grid">
-      <div class="vcard"><div class="k">01</div><div class="t">축구 친구 8~11명</div><div class="d">혼자 보던 경기를 같이 볼 사람들. 이게 진짜 상품이에요.</div></div>
-      <div class="vcard"><div class="k">02</div><div class="t">큐레이션된 3번의 밤</div><div class="d">혼자선 못 만드는 몰입. 정답 없는 축구 수다 90분.</div></div>
-      <div class="vcard"><div class="k">03</div><div class="t">손에 남는 기록</div><div class="d">기수 베스트 11 · 시즌 예측 봉인 · 함께 짠 관전 캘린더.</div></div>
-      <div class="vcard"><div class="k">04</div><div class="t">소속, 그리고 OB</div><div class="d">세 번으로 끝나지 않아요. 이후에도 이어지는 우리 기수.</div></div>
+    <div class="kick"><span class="dot"></span>What you'd miss</div>
+    <h2>혼자 보면,<br><span class="u">놓치는 것들.</span></h2>
+    <div class="rows">
+      <div class="row"><div class="idx">01</div><div><div class="rt">나와 맞는 축구 메이트</div><div class="rd">혼자 보던 경기를 같이 볼, 나와 결이 맞는 사람들.</div></div></div>
+      <div class="row"><div class="idx">02</div><div><div class="rt">큐레이션된 세 번의 밤</div><div class="rd">혼자선 못 만드는 몰입. 정답 없는 축구 수다 90분.</div></div></div>
+      <div class="row"><div class="idx">03</div><div><div class="rt">여기서만, 특별한 상품 🔒</div><div class="rd">기수 멤버에게만 주어지는 특별한 상품이 기다려요.</div></div></div>
+      <div class="row"><div class="idx">04</div><div><div class="rt">끝나도, 이어지는 사이</div><div class="rd">세 번으로 끝나지 않아요. 기수가 끝나도 계속 만나는 우리.</div></div></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">Curriculum</div>
-    <h2>지금 아니면, 못 할 이야기.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="n">1</div>
-        <div><h3>이적시장, 그 소란</h3>
-          <p>이번 여름 이적 뉴스, 실컷 떠들며 시작해요.</p></div>
-      </div>
-      <div class="step">
-        <div class="n">2</div>
-        <div><h3>나만의 베스트 11</h3>
-          <p>각자의 픽을 모아 우리만의 이야기로.</p></div>
-      </div>
-      <div class="step">
-        <div class="n">3</div>
-        <div><h3>새 시즌 미리보기</h3>
-          <p>개막 전, 우리 팀 판도까지 미리.</p></div>
-      </div>
+    <div class="kick"><span class="dot"></span>Curriculum</div>
+    <h2>지금 아니면,<br><span class="u">못 할 이야기.</span></h2>
+    <div class="rows">
+      <div class="row"><div class="idx">1</div><div><div class="rt">이적시장, 그 소란</div><div class="rd">이번 여름 이적 뉴스, 실컷 떠들며 시작해요.</div></div></div>
+      <div class="row"><div class="idx">2</div><div><div class="rt">나만의 베스트 11</div><div class="rd">각자의 픽을 모아 우리만의 이야기로.</div></div></div>
+      <div class="row"><div class="idx">3</div><div><div class="rt">새 시즌 미리보기</div><div class="rd">개막 전, 우리 팀 판도까지 미리.</div></div></div>
     </div>
-    <p class="muted" style="margin-top:16px; font-size:13.5px;">자세한 진행은 와서 직접 — 매주 작은 준비물 하나로 함께 만들어가는 재미가 있어요.</p>
+    <p class="muted" style="margin-top:20px; font-size:13.5px;">자세한 진행은 와서 직접 — 매주 작은 준비물 하나로 함께 만들어가는 재미가 있어요.</p>
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="space"><div class="inner">
-      <div class="eyebrow">The place</div>
-      <h2>을지로 골목 어딘가,<br>축구 아지트.</h2>
+    <div class="place">
+      <div class="kick"><span class="dot"></span>The place</div>
+      <h2>을지로 골목 어딘가,<br><span class="u">축구 아지트.</span></h2>
       <p>퇴근하고 맥주 한 캔 들고 편하게. 매 회 간단한 스낵과 음료(맥주 또는 무알콜·음료) 한 캔이 함께합니다. 마시러 오는 곳이 아니라, 편하게 떠들러 오는 곳.</p>
       <ul><li>을지로 · 우프라운지</li><li>간식 + 음료 1캔 제공</li><li>혼자 와도 되는 분위기</li></ul>
-    </div></div>
+    </div>
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">Host</div>
-    <h2>축구를 더욱 더 즐길 수 있는 자리,<br>흔치 않아요.</h2>
-    <p class="muted" style="margin-top:12px; font-size:15px;">당신을 위해 맛있게 끓여드립니다.</p>
+    <div class="kick"><span class="dot"></span>Host</div>
+    <h2>축구를 더욱 더 즐길 수 있는 자리,<br><span class="u">흔치 않아요.</span></h2>
+    <p class="muted" style="margin-top:14px; font-size:15px;">당신을 위해 맛있게 끓여드립니다.</p>
     <div class="host">
       <div class="host-pic">밖</div>
       <div class="host-body">
@@ -328,11 +328,20 @@
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;" class="after">
   <div class="wrap">
-    <div class="eyebrow">Pricing</div>
+    <div class="kick"><span class="dot"></span>After the salon</div>
+    <h2>프로그램이 끝나면 끝?<br><span class="u">아니요, 진짜 시작이에요.</span></h2>
+    <p class="muted" style="margin-top:16px; font-size:15.5px;">이제 축구를, 혼자 보지 않아도 되니까.<br>기수를 마친 멤버에겐 — <b>멤버 전용 혜택</b>이 기다리고 있어요. 🔒</p>
+    <p class="muted" style="margin-top:20px; font-size:14px; line-height:1.75;">필드밖 토크 살롱은 단순히 새로운 사람을 만나 즐기는 모임이 아니에요.<br>각자의 취향으로, 함께 새로운 팬덤 문화를 만들어가는 모임입니다.</p>
+  </div>
+</section>
+
+<section style="padding-top:10px;">
+  <div class="wrap">
+    <div class="kick"><span class="dot"></span>Pricing</div>
     <h2>1기 참가비.</h2>
-    <div class="price" style="margin-top:22px;">
+    <div class="price" style="margin-top:26px;">
       <span class="early">얼리버드 · 마감 전 한정</span>
       <div class="old">정가 109,000원</div>
       <div class="now">89,000<span style="font-size:22px;">원</span></div>
@@ -340,8 +349,8 @@
       <ul>
         <li>살롱 참여 (일주일에 한 번, 총 3회)</li>
         <li>매 회 간식 + 음료(맥주/무알콜) 1캔</li>
-        <li>기수 베스트 11 · 시즌 예측 봉인 · 관전 캘린더</li>
-        <li>기수 단톡 & OB 커뮤니티 · 개막전 재소집</li>
+        <li>기수 멤버 전용 특별 상품</li>
+        <li>기수 단톡 · 기수 종료 후에도 이어지는 모임</li>
       </ul>
       <a class="btn btn-dark apply">지금 신청하기</a>
       <p class="policy">소수정예 8~12명 · 전액 선결제 · 간단 신청서 확인 후 확정<br>노쇼·임박 취소 시 환불 불가 · 3회 개근 시 리워드 제공</p>
@@ -349,36 +358,36 @@
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">How to join</div>
+    <div class="kick"><span class="dot"></span>How to join</div>
     <h2>신청 방법.</h2>
-    <div style="margin-top:18px;">
+    <div style="margin-top:22px;">
       <div class="astep"><span class="n">STEP 1</span><div><div class="t">간단 신청서</div><div class="d">3문항만. 왜 지원했는지, 응원팀·입덕 시기, 기대하는 것.</div></div></div>
       <div class="astep"><span class="n">STEP 2</span><div><div class="t">선결제로 자리 확정</div><div class="d">소수정예라 선결제 순으로 마감돼요.</div></div></div>
       <div class="astep"><span class="n">STEP 3</span><div><div class="t">입장 — 우리 기수 시작</div><div class="d">웰컴 안내 + 사전 미션. 시작 전부터 이미 멤버.</div></div></div>
     </div>
-    <p class="muted" style="margin-top:16px; font-size:13.5px;">궁금하거나 아직 고민된다면 <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); font-weight:600;">카카오채널</a>로 편하게 문의하고, 기수 오픈 알림도 받으세요.</p>
+    <p class="muted" style="margin-top:18px; font-size:13.5px;">궁금하거나 아직 고민된다면 <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); font-weight:600;">카카오채널</a>로 편하게 문의하고, 기수 오픈 알림도 받으세요.</p>
   </div>
 </section>
 
-<section style="padding-top:8px;">
+<section style="padding-top:10px;">
   <div class="wrap">
-    <div class="eyebrow">FAQ</div>
-    <h2 style="margin-bottom:14px;">자주 묻는 질문.</h2>
+    <div class="kick"><span class="dot"></span>FAQ</div>
+    <h2 style="margin-bottom:18px;">자주 묻는 질문.</h2>
     <details><summary>축구를 잘 몰라도 되나요?</summary><p>네. 지식이 아니라 취향·경험을 나누는 자리예요. “바보 같은 질문 환영”이 규칙이고, 설명충·핀잔은 금지입니다.</p></details>
     <details><summary>혼자 신청해도 괜찮을까요?</summary><p>대부분 혼자 오세요. 입덕 시기가 다른 사람끼리 짝을 매칭해 자연스럽게 친해지도록 진행합니다.</p></details>
     <details><summary>술을 못 마셔도 되나요?</summary><p>물론이에요. 음료는 맥주 또는 무알콜·음료 중 선택. 마시러 오는 곳이 아니라 편하게 떠들러 오는 곳입니다.</p></details>
-    <details><summary>89,000원이 아깝지 않을까요?</summary><p>세 번의 몰입 경험, 손에 남는 기록, 그리고 시즌 내내 같이 볼 친구들까지. 술자리 두 번 값으로 얻는 것치고는 남는 장사예요.</p></details>
+    <details><summary>89,000원이 아깝지 않을까요?</summary><p>세 번의 몰입 경험, 기수 전용 특별 상품, 그리고 시즌 내내 같이 볼 친구들까지. 술자리 두 번 값으로 얻는 것치고는 남는 장사예요.</p></details>
     <details><summary>평일과 주말 기수 차이는요?</summary><p>내용은 같아요. 평일 1기는 7/22(수) 저녁 8시 시작(퇴근 후 아지트 무드), 주말 1기는 7/25(토) 오후 2시 시작(낮부터 여유로운 무드)이고, 이후 매주 같은 요일·시간에 총 3회입니다. 라이프스타일에 맞게 고르세요.</p></details>
   </div>
 </section>
 
 <section class="finalcta">
   <div class="wrap">
-    <h2>이번 기수 8석,<br>놓치면 다음을 기다려요.</h2>
-    <a class="btn btn-gold apply">기수 신청하기</a>
-    <div style="margin-top:14px;"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 오픈 알림 받기</a></div>
+    <h2>이번 기수 8석,<br><span class="u">놓치면 다음을 기다려요.</span></h2>
+    <a class="btn btn-gold apply">기수 신청하기 →</a>
+    <div style="margin-top:16px;"><a class="kko" href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener">카카오채널 추가 · 오픈 알림 받기</a></div>
   </div>
 </section>
 
