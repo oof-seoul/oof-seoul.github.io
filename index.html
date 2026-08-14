@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>필드밖 토크 살롱 · OOF 을지로</title>
+<title>우프 토크 살롱 · OOF 을지로</title>
 <!-- 신청/공유 링크 교체: 아래 <script>의 APPLY_URL, SHARE_URL 값만 바꾸세요 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -213,7 +213,7 @@
   </div>
 </header>
 
-<div class="marquee"><div class="marquee-track">필드밖 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> 필드밖 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> </div></div>
+<div class="marquee"><div class="marquee-track">우프 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> 우프 토크 살롱 <b>·</b> 축구 볼 때 나는? <b>·</b> 을지로 <b>·</b> </div></div>
 
 <section id="test">
   <div class="wrap">
@@ -333,7 +333,7 @@
     <div class="kick"><span class="dot"></span>After the salon</div>
     <h2>프로그램이 끝나면 끝?<br><span class="u">아니요, 진짜 시작이에요.</span></h2>
     <p class="muted" style="margin-top:16px; font-size:15.5px;">이제 축구를, 혼자 보지 않아도 되니까.<br>기수를 마친 멤버에겐 — <b>멤버 전용 혜택</b>이 기다리고 있어요. 🔒</p>
-    <p class="muted" style="margin-top:20px; font-size:14px; line-height:1.75;">필드밖 토크 살롱은 단순히 새로운 사람을 만나 즐기는 모임이 아니에요.<br>각자의 취향으로, 함께 새로운 팬덤 문화를 만들어가는 모임입니다.</p>
+    <p class="muted" style="margin-top:20px; font-size:14px; line-height:1.75;">우프 토크 살롱은 단순히 새로운 사람을 만나 즐기는 모임이 아니에요.<br>각자의 취향으로, 함께 새로운 팬덤 문화를 만들어가는 모임입니다.</p>
   </div>
 </section>
 
@@ -394,7 +394,7 @@
 <footer>
   <div class="wrap">
     <div class="logo">OOF<b>.SEOUL</b></div>
-    <p>필드밖 토크 살롱 · 을지로 · <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); text-decoration:none;">카카오채널</a> · @out_of_field_</p>
+    <p>우프 토크 살롱 · 을지로 · <a href="https://pf.kakao.com/_WYWvn" target="_blank" rel="noopener" style="color:var(--lime); text-decoration:none;">카카오채널</a> · @out_of_field_</p>
   </div>
 </footer>
 
@@ -463,7 +463,7 @@ function share(){
   const url = currentType ? (dir+'result-'+currentType+'.html') : (SHARE_URL||location.href);
   const t = currentType?TYPES[currentType].name:'';
   const text = t ? `나 '${t}'형 나왔어. 너는 어떤 타입일까? (은근 정확함)` : '축구 볼 때 나는? 관전 유형 테스트';
-  if(navigator.share){navigator.share({title:'축구 볼 때 나는? · 필드밖 토크 살롱',text,url}).catch(()=>{});}
+  if(navigator.share){navigator.share({title:'축구 볼 때 나는? · 우프 토크 살롱',text,url}).catch(()=>{});}
   else{navigator.clipboard.writeText(text+'\n'+url).then(()=>toast('공유 문구가 복사됐어요 · 붙여넣기 하세요')).catch(()=>toast('공유 링크 · '+url));}
 }
 document.getElementById('share').addEventListener('click',share);
