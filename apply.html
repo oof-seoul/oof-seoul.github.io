@@ -62,6 +62,13 @@
     <div class="sec">기본 정보</div>
     <div class="q"><label class="qlabel">이름<span class="req">*</span></label><input type="text" name="name"></div>
     <div class="q"><label class="qlabel">연락 가능한 휴대폰 번호<span class="req">*</span><div class="hint">확정·안내 연락용으로만 써요.</div></label><input type="text" name="contact" inputmode="tel"></div>
+    <div class="q"><label class="qlabel">몇 년생이신가요?<span class="req">*</span><div class="hint">예) 1995</div></label><input type="text" name="birth" inputmode="numeric"></div>
+    <div class="q"><label class="qlabel">성별<span class="req">*</span></label>
+      <div class="opts" data-radio="gender">
+        <label class="opt"><input type="radio" name="gender" value="남"><span>남</span></label>
+        <label class="opt"><input type="radio" name="gender" value="여"><span>여</span></label>
+        <label class="opt"><input type="radio" name="gender" value="응답 안 함"><span>응답 안 함</span></label>
+      </div></div>
     <div class="q"><label class="qlabel">인스타 등 SNS 주소<div class="hint">선택 · 하나만 적어주세요 (매칭 참고).</div></label><input type="text" name="sns"></div>
     <div class="q"><label class="qlabel">희망 기수<span class="req">*</span></label>
       <div class="opts col" data-radio="cohort">
@@ -153,6 +160,8 @@ form.addEventListener('submit', async e=>{
   const miss=[];
   if(!val('name')) miss.push('이름');
   if(!val('contact')) miss.push('연락처');
+  if(!val('birth')) miss.push('년생');
+  if(!radio('gender')) miss.push('성별');
   if(!radio('cohort')) miss.push('희망 기수');
   if(!val('team')) miss.push('응원 팀·리그');
   if(checks('league').length===0) miss.push('좋아하는 리그');
@@ -167,7 +176,7 @@ form.addEventListener('submit', async e=>{
 
   btn.disabled=true; btn.textContent='제출 중…';
   const payload = {
-    name: val('name'), contact: val('contact'), sns: val('sns'), cohort: radio('cohort'),
+    name: val('name'), contact: val('contact'), birth: val('birth'), gender: radio('gender'), sns: val('sns'), cohort: radio('cohort'),
     team: val('team'), league: checks('league'), watchstyle: radio('watchstyle'),
     social: radio('social'), matchgood: checks('matchgood'), matchbad: checks('matchbad'),
     motive: val('motive'), photo: radio('photo')
