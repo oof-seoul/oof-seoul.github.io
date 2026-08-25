@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>우프 토크 살롱 신청 · OOF 을지로</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{ --bg:#FFF; --bg2:#F6F5F1; --ink:#15171C; --muted:#71757C; --line:#E3E1DB; --lime:#DDFF00; --dark:#111419; --danger:#C0392B; --r:12px; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg2); color:var(--ink); font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif; line-height:1.6; letter-spacing:-.01em; -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word;}
+  .wrap{max-width:600px; margin:0 auto; padding:0 20px 80px;}
+  .top{background:var(--dark); color:#fff; text-align:center; padding:44px 20px 40px; margin-bottom:8px;}
+  .top .logo{font-size:20px; font-weight:800;} .top .logo b{color:var(--lime);}
+  .top h1{font-size:24px; font-weight:800; margin-top:14px; letter-spacing:-.02em;}
+  .top p{color:#C2C6CD; font-size:14px; margin-top:12px; line-height:1.6;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:22px; margin-top:14px;}
+  .sec{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.1em; color:#111419; background:var(--lime); padding:4px 9px; border-radius:5px; text-transform:uppercase; margin:26px 0 4px;}
+  .q{margin-top:20px;} .q:first-child{margin-top:6px;}
+  label.qlabel{display:block; font-size:15px; font-weight:600; margin-bottom:9px;}
+  label.qlabel .req{color:var(--danger); margin-left:3px;}
+  .hint{font-size:13px; color:var(--muted); font-weight:400; margin-top:3px;}
+  input[type=text], textarea{width:100%; font-family:inherit; font-size:15px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); outline:none;}
+  input:focus, textarea:focus{border-color:#9BB400;}
+  textarea{min-height:70px; resize:vertical;}
+  .opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .opts.col{flex-direction:column;}
+  .opt{display:flex; gap:9px; align-items:center; padding:11px 14px; border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:14.5px; transition:.12s;}
+  .opts:not(.col) .opt{flex:1 1 auto;}
+  .opt:hover{border-color:var(--ink);}
+  .opt.sel{border-color:var(--lime); background:#FAFFDB;}
+  .opt input{accent-color:#9BB400;}
+  .agree{background:var(--bg2); border:1px solid var(--line); border-radius:10px; padding:13px 15px; margin-top:9px; display:flex; gap:11px; align-items:flex-start; cursor:pointer; font-size:14px;}
+  .agree.sel{border-color:var(--lime);}
+  .agree input{margin-top:2px; accent-color:#9BB400;}
+  .agree .t{color:var(--muted);} .agree.sel .t{color:var(--ink);}
+  .submit{width:100%; margin-top:28px; padding:16px; font-size:16px; font-weight:700; background:var(--lime); color:#111419; border:none; border-radius:12px; cursor:pointer;}
+  .submit:hover{background:#C4E600;} .submit:disabled{opacity:.5; cursor:default;}
+  .err{color:var(--danger); font-size:13px; margin-top:8px; display:none;}
+  .done{display:none; text-align:center; background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:48px 26px; margin-top:14px;}
+  .done .big{font-size:44px;} .done h2{font-size:22px; font-weight:800; margin-top:12px;}
+  .done p{color:var(--muted); font-size:15px; margin-top:12px; line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">OO<b>F</b> 을지로</div>
+  <h1>우프 토크 살롱</h1>
+  <p>1분이뮴 끝나요. 춡구 지식은 안 물어됐요.<br>제출 = 확정 아님. 확인 후 카카오톱톉�도만 안내드려요.</p>
+  <div style="margin-top:14px; display:inline-block; border:1px solid rgba(221,255,0,.4); border-radius:12px; padding:10px 16px; font-size:14px; line-height:1.5;">
+    <span style="color:#DDFF00; font-weight:800;">참가비 99,000원</span>
+    <span style="opacity:.6; text-decoration:line-through; margin-left:6px;">정가 129,000원</span>
+    <span style="opacity:.7;"> · 3회 패키지</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <form id="form" class="card" name="apply" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="form-name" value="apply">
+    <p style="display:none"><label>이 칸은 비워두세요 <input name="bot-field"></label></p>
+
+    <div class="sec">기본 정보</div>
+    <div class="q"><label class="qlabel">이름<span class="req">*</span></label><input type="text" name="name"></div>
+    <div class="q"><label class="qlabel">연락 가능한 휴대폰 번호<span class="req">*</span><div class="hint">확정·안내 연락용으로만 써요.</div></label><input type="text" name="contact" inputmode="tel"></div>
+    <div class="q"><label class="qlabel">인스타 등 SNS 주소<div class="hint">선택 · 하나만 적어주세요 (매칭 참고).</div></label><input type="text" name="sns"></div>
+    <div class="q"><label class="qlabel">희망 기수<span class="req">*</span></label>
+      <div class="opts col" data-radio="cohort">
+        <label class="opt"><input type="radio" name="cohort" value="평일 저녁"><span>평일 저녁</span></label>
+        <label class="opt"><input type="radio" name="cohort" value="주말 오후"><span>주말 오후</span></label>
+        <label class="opt"><input type="radio" name="cohort" value="둘 다 가능"><span>둘 다 가능</span></label>
+      </div></div>
+
+    <div class="sec">⚡ 30초 축구 취향 체크<div class="hint" style="font-weight:400; margin-top:4px;">결이 맞는 멤버와 매칭할 때만 써요. 가볍게 골라주세요!</div></div>
+    <div class="q"><label class="qlabel">응원하는 팀·리그는?<span class="req">*</span><div class="hint">정하는 중이면 “아직 정하는 중”도 좋아요.</div></label><input type="text" name="team" placeholder="예) 리버풀 / EPL / 아직 정하는 중"></div>
+    <div class="q"><label class="qlabel">좋아하는 리그·무대는? (복수 가능)<span class="req">*</span></label>
+      <div class="opts" data-check="league">
+        <label class="opt"><input type="checkbox" name="league" value="EPL"><span>EPL</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="라리가"><span>라리가</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="분데스리가"><span>분데스</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="세리에A"><span>세리에A</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="리그앙"><span>리그앙</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="(�리그"><span>K리그</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="국가대표(A매치)"><span>구가대표</span></label>
+        <label class="opt"><input type="checkbox" name="league" value="그 아"><span>그 외</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">관전 스타일은?<span class="req">*</span></label>
+      <div class="opts col" data-radio="watchstyle">
+        <label class="opt"><input type="radio" name="watchstyle" value="직관파"><span>주로 직관파</span></label>
+        <label class="opt"><input type="radio" name="watchstyle" value="직관도 즐김"><span>직관도 즐겨요</span></label>
+        <label class="opt"><input type="radio" name="watchstyle" value="하이라이트·클립"><span>하이라이트·클립 위주</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">사람들과 어울리는 편은?<span class="req">*</span></label>
+      <div class="opts col" data-radio="social">
+        <label class="opt"><input type="radio" name="social" value="금방 ��해짐"><span>찘음 봐도 금방 친해져요</span></label>
+        <label class="opt"><input type="radio" name="social" value="편해지멼 수다폘이"><span>편해지멼 수다폘이</span></label>
+        <label class="opt"><input type="radio" name="social" value="조용히 스뮤드는"><span>조용히 스뮤드는 편</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">나랑 잘 맞을 것 같은 사람은? (복수 가능)<span class="req">*</span></label>
+      <div class="opts col" data-check="matchgood">
+        <label class="opt"><input type="checkbox" name="matchgood" value="리액션 크게 같이 소리치는 사람"><span>리액션 크게 같이 소리치는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchgood" value="편하게 툭툭 출구 얘기하는 사람"><span>편하게 툭툭 출구 얘기하는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchgood" value="전술·깊게 파고드는 사람"><span>전술·깊게 파고드는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchgood" value="조용히 즐기는 사람"><span>조용히 즐기는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchgood" value="누구든다 잘 맞아요"><span>누구든 다 잘 맞아요</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">이러 사람·분위기는 조금 안 맞아요 (복수 가능)<span class="req">*</span></label>
+      <div class="opts col" data-check="matchbad">
+        <label class="opt"><input type="checkbox" name="matchbad" value="아는 척하며 핀잔 주는 사람"><span>아는 척하며 핀잔 주는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchbad" value="너무 조용한 분위기"><span>너무 조용한 분위기</span></label>
+        <label class="opt"><input type="checkbox" name="matchbad" value="과하게 시끄러운 분위기"><span>과하게 시끄러운 분위기</span></label>
+        <label class="opt"><input type="checkbox" name="matchbad" value="축구 지식 강요하는 사람"><span>축구 지식 강요하는 사람</span></label>
+        <label class="opt"><input type="checkbox" name="matchbad" value="딱히 없어요"><span>딱히 없어요</span></label>
+      </div></div>
+
+    <div class="sec">마무리</div>
+    <div class="q"><label class="qlabel">우프 토크 살롱에 지원한 이유<span class="req">*</span><div class="hint">편하게 한 줄이면 충분해요.</div></label><textarea name="motive"></textarea></div>
+    <label class="agree" data-agree="1" style="margin-top:16px;"><input type="checkbox" name="agree1"><span class="t">축구 중심의 편한 대화 모임이에요. <b>소개팅·영업 목적이 아니고</b>, 서로 존중(설명충·핀잔 금지)하며, <b>신청서 검토·매칭 후 확정</b>(확정 후 노쇼·임박취소 시 환불 불가)되는 점을 이해합니다.<span class="req" style="color:var(--danger)"> *</span></span></label>
+    <div class="q"><label class="qlabel">현장 사진·영상의 마케팅 활용<span class="req">*</span></label>
+      <div class="opts" data-radio="photo">
+        <label class="opt"><input type="radio" name="photo" value="동의"><span>동의합니다</span></label>
+        <label class="opt"><input type="radio" name="photo" value="미동의"><span>동의 안 해요</span></label>
+      </div></div>
+
+    <div class="err" id="err"></div>
+    <button type="submit" class="submit" id="submitBtn">신청서 제출하기</button>
+  </form>
+
+  <div class="done" id="done">
+    <div class="big">🙌</div>
+    <h2>신청 감사합니다!</h2>
+    <p>신청서를 확인한 뒤, 취향이 맞는 멤버들과 매칭되면<br>1~2일 내 카카오톡으로 확정 안내를 드릴게요.</p>
+  </div>
+</div>
+
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwnq9P7BCu1nDw7ut2aOc7pTVXqrPlybfjM68SCVa6I6Ux8f3TBO8TF4jncP1DucKIixg/exec";
+const form=document.getElementById('form'), errBox=document.getElementById('err'), btn=document.getElementById('submitBtn');
+
+document.querySelectorAll('.opt, .agree').forEach(el=>{
+  const input=el.querySelector('input');
+  input.addEventListener('change',()=>{
+    if(input.type==='radio'){ el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); el.classList.add('sel'); }
+    else{ el.classList.toggle('sel', input.checked); }
+  });
+});
+
+function val(n){ const el=form.elements[n]; return el ? (el.value||'').trim() : ''; }
+function radio(n){ const el=form.querySelector(`input[name="${n}"]:checked`); return el?el.value:''; }
+function checks(n){ return [...form.querySelectorAll(`input[name="${n}"]:checked`)].map(x=>x.value); }
+
+form.addEventListener('submit', async e=>{
+  e.preventDefault(); errBox.style.display='none';
+  const miss=[];
+  if(!val('name')) miss.push('이름');
+  if(!val('contact')) miss.push('연락처');
+  if(!radio('cohort')) miss.push('희망 기수');
+  if(!val('team')) miss.push('응원 팀·리그');
+  if(checks('league').length===0) miss.push('좋아하는 리그');
+  if(!radio('watchstyle')) miss.push('관전 스타일');
+  if(!radio('social')) miss.push('어울리는 성향');
+  if(checks('matchgood').length===0) miss.push('잘 맞는 사람');
+  if(checks('matchbad').length===0) miss.push('안 맞는 사람·분위기');
+  if(!val('motive')) miss.push('지원 이유');
+  if(!radio('photo')) miss.push('사진 활용 동의');
+  if(miss.length){ errBox.textContent='다음 항목을 채워주세요 · '+miss.join(', '); errBox.style.display='block'; window.scrollBy(0,120); return; }
+  if(!form.agree1.checked){ errBox.textContent='‘함께 지키기’ 동의에 체크해주세요.'; errBox.style.display='block'; return; }
+
+  btn.disabled=true; btn.textContent='제출 중…';
+  const payload = {
+    name: val('name'), contact: val('contact'), sns: val('sns'), cohort: radio('cohort'),
+    team: val('team'), league: checks('league'), watchstyle: radio('watchstyle'),
+    social: radio('social'), matchgood: checks('matchgood'), matchbad: checks('matchbad'),
+    motive: val('motive'), photo: radio('photo')
+  };
+  try{
+    const body = new URLSearchParams(new FormData(form)).toString();
+    const p1 = fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body }).catch(()=>{});
+    const p2 = ENDPOINT ? fetch(ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }).catch(()=>{}) : null;
+    await Promise.all([p1, p2]);
+    showDone();
+  }catch(err){
+    btn.disabled=false; btn.textContent='신청서 제출하기';
+    errBox.textContent='전송 중 문제가 생겼어요. 잠시 후 다시 시도해주세요.'; errBox.style.display='block';
+  }
+});
+function showDone(){ form.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); }
+</script>
+</body>
+</html>
