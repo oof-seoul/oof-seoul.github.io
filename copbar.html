@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>콥 바 신청 · KOP BAR · 우프라운지 을지로</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{ --bg:#0B0B0D; --ink:#F4F4F6; --muted:#A1A1AA; --line:rgba(255,255,255,.12); --red:#C8102E; --card:#141418; --r:14px; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif; line-height:1.6; letter-spacing:-.01em; -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word;}
+  .wrap{max-width:540px; margin:0 auto; padding:0 20px 80px;}
+  .top{background:linear-gradient(180deg,#1a0407,#0B0B0D); text-align:center; padding:46px 20px 36px; border-bottom:1px solid var(--line);}
+  .top .logo{font-size:20px; font-weight:900; letter-spacing:.04em;} .top .logo b{color:var(--red);}
+  .top h1{font-size:25px; font-weight:900; margin-top:12px; letter-spacing:-.02em;}
+  .top .ynwa{font-size:12px; color:var(--red); font-weight:800; letter-spacing:.2em; margin-top:10px;}
+  .top p{color:var(--muted); font-size:14px; margin-top:12px;}
+  /* 회차 카드 */
+  .sess{background:var(--card); border:1px solid var(--line); border-left:3px solid var(--red); border-radius:var(--r); padding:20px; margin-top:20px;}
+  .sess .vol{font-size:12px; font-weight:800; color:var(--red); letter-spacing:.12em;}
+  .sess .ttl{font-size:18px; font-weight:800; margin-top:6px; line-height:1.4;}
+  .sess ul{list-style:none; margin-top:14px; display:grid; gap:9px;}
+  .sess li{font-size:14.5px; color:var(--ink); display:flex; gap:10px;}
+  .sess li b{color:var(--muted); font-weight:600; min-width:46px;}
+  .sess .price{margin-top:14px; padding-top:14px; border-top:1px solid var(--line); font-size:15px;}
+  .sess .price b{color:var(--red); font-weight:900; font-size:19px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:22px 20px; margin-top:16px;}
+  .q{margin-top:18px;} .q:first-child{margin-top:0;}
+  label.qlabel{display:block; font-size:14.5px; font-weight:700; margin-bottom:8px;}
+  label.qlabel .req{color:var(--red); margin-left:3px;}
+  .hint{font-size:12.5px; color:var(--muted); font-weight:400; margin-top:3px;}
+  input[type=text], textarea{width:100%; font-family:inherit; font-size:15px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:#0f0f12; color:var(--ink); outline:none;}
+  input:focus, textarea:focus{border-color:var(--red);}
+  textarea{min-height:56px; resize:vertical;}
+  .opts{display:flex; gap:8px; flex-wrap:wrap;}
+  .opt{flex:1 1 auto; text-align:center; padding:11px 10px; border:1px solid var(--line); border-radius:10px; cursor:pointer; font-size:14.5px; transition:.12s;}
+  .opt:hover{border-color:#6a6a72;} .opt.sel{border-color:var(--red); background:rgba(200,16,46,.14);}
+  .opt input{display:none;}
+  .submit{width:100%; margin-top:24px; padding:16px; font-size:16px; font-weight:800; background:var(--red); color:#fff; border:none; border-radius:12px; cursor:pointer;}
+  .submit:hover{filter:brightness(1.08);} .submit:disabled{opacity:.5; cursor:default;}
+  .err{color:#ff6b6b; font-size:13px; margin-top:8px; display:none;}
+  .done{text-align:center; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:44px 24px; margin-top:16px;}
+  .done .big{font-size:42px;} .done h2{font-size:21px; font-weight:900; margin-top:10px;} .done p{color:var(--muted); font-size:15px; margin-top:12px; line-height:1.7;}
+  .done .ynwa{color:var(--red); font-weight:900; letter-spacing:.14em; margin-top:16px; font-size:13px;}
+  .foot{text-align:center; color:var(--muted); font-size:12px; margin-top:22px;}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="logo">KOP<b> BAR</b> · 을지로</div>
+  <h1>콥 바 신청</h1>
+  <div class="ynwa">YOU'LL NEVER WATCH ALONE</div>
+  <p>혼자 와도 돼요. 리버풀 얘기할 사람이 있는 곳.</p>
+</div>
+
+<div class="wrap">
+  <!-- 이번 회차 -->
+  <div class="sess">
+    <div class="vol">KOP BAR · Vol.1</div>
+    <div class="ttl">🏆 레전드 드래프트 나이트<br><span style="font-size:14px; color:var(--muted); font-weight:600;">역대 리버풀 베스트11을 짜라 + 명경기 상영</span></div>
+    <ul>
+      <li><b>📅 일시</b> 11/12 (목) 저녁 7:30 ~ 9:30</li>
+      <li><b>📍 장소</b> 을지로 · 우프라운지 (단독 2층)</li>
+      <li><b>👥 정원</b> 20명 · 혼자 와도 환영 · 뉴비 환영</li>
+      <li><b>🍺 포함</b> 따뜻한 간식 + 음료 1</li>
+    </ul>
+    <div class="price">콥 세트 <b>15,000원</b> <span style="color:var(--muted); font-size:13px;">(현장 결제)</span></div>
+  </div>
+
+  <form id="form" class="card">
+    <div class="q"><label class="qlabel">이름 / 닉네임<span class="req">*</span></label><input type="text" name="name"></div>
+    <div class="q"><label class="qlabel">연락 가능한 번호 (또는 카카오 ID)<span class="req">*</span><div class="hint">여기로 안내드릴게요.</div></label><input type="text" name="contact"></div>
+    <div class="q"><label class="qlabel">몇 분 오세요?<span class="req">*</span></label>
+      <div class="opts" data-radio="count">
+        <label class="opt"><input type="radio" name="count" value="1명(혼자)"><span>1명 (혼자)</span></label>
+        <label class="opt"><input type="radio" name="count" value="2명"><span>2명</span></label>
+        <label class="opt"><input type="radio" name="count" value="3명"><span>3명</span></label>
+        <label class="opt"><input type="radio" name="count" value="4명+"><span>4명+</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">리버풀 팬 경력?<div class="hint">편하게! 뉴비도 대환영이에요.</div></label>
+      <div class="opts" data-radio="fanlevel">
+        <label class="opt"><input type="radio" name="fanlevel" value="이번 시즌 입덕"><span>이번 시즌 입덕</span></label>
+        <label class="opt"><input type="radio" name="fanlevel" value="몇 년차"><span>몇 년차</span></label>
+        <label class="opt"><input type="radio" name="fanlevel" value="찐 올드콥"><span>찐 올드콥</span></label>
+      </div></div>
+    <div class="q"><label class="qlabel">하고 싶은 말<div class="hint">선택 · 최애 선수나 한마디 편하게!</div></label><textarea name="note" placeholder="예) 살라 없으면 안 봐요 🔴"></textarea></div>
+    <div class="err" id="err"></div>
+    <button type="submit" class="submit" id="btn">신청하기 🔴</button>
+    <p class="foot">신청 확인 후, 자리·결제 안내를 연락드려요. · 혼잤 와도 환영!</p>
+  </form>
+
+  <div class="done" id="done" style="display:none;">
+    <div class="big">🔴</div>
+    <h2>신청 접수됐어요!</h2>
+    <p>자리·안내는 남겨주신 연락처로 곧 드릴게요.<br>그날 콥 바에서 봐요 — 혼자 와도 돼요 😊</p>
+    <div class="ynwa">YOU'LL NEVER WATCH ALONE</div>
+  </div>
+</div>
+
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwZvawBtvmG9jfh-4ZczCJrrkvjWqdq9CTYg9ss1bxFX-ZISKescl3roFdQIC2Z-MvjvQ/exec";
+const SESSION = "콥바 Vol.1 · 11/12(목) 19:30 · 레전드 드래프트";
+const form=document.getElementById('form'), errBox=document.getElementById('err'), btn=document.getElementById('btn');
+document.querySelectorAll('.opt').forEach(el=>{el.querySelector('input').addEventListener('change',()=>{el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');});});
+function val(n){const el=form.elements[n];return el?(el.value||'').trim():'';}
+function radio(n){const el=form.querySelector(`input[name="${n}"]:checked`);return el?el.value:'';}
+form.addEventListener('submit', async e=>{
+  e.preventDefault(); errBox.style.display='none';
+  const miss=[];
+  if(!val('name')) miss.push('이름');
+  if(!val('contact')) miss.push('연락처');
+  if(!radio('count')) miss.push('인원');
+  if(miss.length){ errBox.textContent='다음만 채워주세요 · '+miss.join(', '); errBox.style.display='block'; return; }
+  btn.disabled=true; btn.textContent='전송 중…';
+  const payload = {
+    stage:'콥바', name: val('name'), contact: val('contact'),
+    cohort: SESSION, team: radio('fanlevel')||'리버풀',
+    motive: '['+radio('count')+'] '+val('note')
+  };
+  try{
+    await fetch(ENDPOINT,{ method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) });
+    form.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){ btn.disabled=false; btn.textContent='신청하기 🔴'; errBox.textContent='전송 중 문제가 생겼어요. 잠시 후 다시 시도해주세요.'; errBox.style.display='block'; }
+});
+</script>
+</body>
+</html>
