@@ -50,11 +50,11 @@
     <div class="q"><label class="qlabel">이름 / 닉네임<span class="req">*</span></label><input type="text" name="name"></div>
     <div class="q"><label class="qlabel">연락 가능한 번호 (또는 카카오 ID)<span class="req">*</span><div class="hint">여기로 안내드릴게요.</div></label><input type="text" name="contact"></div>
     <div class="q"><label class="qlabel">인스타 아이디<span class="req">*</span><div class="hint">매칭·소통에 참고해요.</div></label><input type="text" name="sns"></div>
-    <div class="q"><label class="qlabel">언제가 편하세요?<span class="req">*</span></label>
-      <div class="opts" data-radio="cohort">
-        <label class="opt"><input type="radio" name="cohort" value="평일 저녁"><span>평일 저녁</span></label>
-        <label class="opt"><input type="radio" name="cohort" value="주말 오후"><span>주말 오후</span></label>
-        <label class="opt"><input type="radio" name="cohort" value="상관없음"><span>상관없음</span></label>
+    <div class="q"><label class="qlabel">어느 살롱으로 신청하세요?<span class="req">*</span><div class="hint">두 반 모두 4주 · 주 1회 진행</div></label>
+      <div class="opts" data-radio="cohort" style="flex-direction:column;">
+        <label class="opt"><input type="radio" name="cohort" value="평일 살롱 · 수 20시"><span>🌙 평일 살롱 — 수요일 저녁 8시 시작 (4주)</span></label>
+        <label class="opt"><input type="radio" name="cohort" value="주말 살롱 · 토 15시"><span>☀️ 주말 살롱 — 토요일 오후 3시 시작 (4주)</span></label>
+        <label class="opt"><input type="radio" name="cohort" value="둘 다 가능"><span>둘 다 가능 (매칭에 맡길게요)</span></label>
       </div></div>
     <div class="q"><label class="qlabel">응원하는 팀·리그<span class="req">*</span><div class="hint">예) 리버풀 / EPL / 아직 정하는 중</div></label><input type="text" name="team" placeholder="예) 리버풀 / EPL / 아직 정하는 중"></div>
     <div class="q"><label class="qlabel">하고 싶은 말<span class="req">*</span><div class="hint">궁금한 점이나 한마디 편하게!</div></label><textarea name="motive" placeholder="편하게 남겨주세요 :)"></textarea></div>
